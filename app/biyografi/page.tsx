@@ -24,7 +24,7 @@ export default function BiographyPage() {
       <header className="grid lg:grid-cols-12 gap-10">
         <div className="lg:col-span-7">
           <p className="kicker text-accent">Biyografi</p>
-          <h1 className="font-display text-display tracking-[-0.02em] mt-3">Bir tarihçinin güzergâhı</h1>
+          <h1 className="font-display text-display tracking-[-0.02em] mt-3">Bir tarihçinin yolculuğu</h1>
         </div>
         <div className="lg:col-span-5 lg:pt-10 font-serif text-lg leading-relaxed text-ink-soft space-y-4">
           <p>

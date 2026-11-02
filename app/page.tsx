@@ -203,7 +203,7 @@ export default function HomePage() {
 
       {/* ——— BİYOGRAFİ ŞERİDİ ——— */}
       <section className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 mt-24">
-        <SectionHead kicker="Biyografi" title="Bir tarihçinin güzergâhı" href="/biyografi/" linkLabel="Zaman çizelgesi" />
+        <SectionHead kicker="Biyografi" title="Bir tarihçinin yolculuğu" href="/biyografi/" linkLabel="Zaman çizelgesi" />
         <ol className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 border-t border-rule">
           {[...TIMELINE]
             .filter((t) => t.kind === "Eğitim" || t.kind === "Akademi")
