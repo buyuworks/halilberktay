@@ -10,7 +10,7 @@ export function SiteFooter() {
         <div className="md:col-span-5">
           <p className="font-display text-4xl leading-none">Halil Berktay</p>
           <p className="mt-4 max-w-sm text-ink-soft font-serif leading-relaxed">
-            Tarihçi. İbn Haldun Üniversitesi Tarih Bölümü. Kitaplar, köşe yazıları, akademik makaleler, video ve ses
+            Tarihçi ve yazar. Kitaplar, köşe yazıları, akademik makaleler, video ve ses
             kayıtlarından oluşan yarım asırlık bir külliyatın dijital arşivi.
           </p>
           <p className="meta mt-6">Prototip · Kasım 2026 · Veriler doğrulanmış kaynaklardan; yer tutucular işaretlidir.</p>

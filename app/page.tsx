@@ -63,7 +63,7 @@ export default function HomePage() {
             <span>Tarih · Arşiv · Defter</span>
           </div>
           <div className="max-w-[40rem] animate-fade-up">
-            <p className="kicker text-ink-mute">Tarihçi · İbn Haldun Üniversitesi Tarih Bölümü</p>
+            <p className="kicker text-ink-mute">Tarihçi · Yazar</p>
             <h1 id="hero-baslik" className="font-display text-display tracking-[-0.025em] mt-4 font-[450]">
               Halil Berktay
             </h1>
