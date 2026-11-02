@@ -1,0 +1,7 @@
+# Netlify yayın ayarları: repo bağlanınca bu değerler otomatik okunur.
+[build]
+  command = "npm run build"
+  publish = "out"
+
+[build.environment]
+  NODE_VERSION = "22"
