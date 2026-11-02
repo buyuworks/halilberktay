@@ -31,6 +31,24 @@ function SectionHead({ kicker, title, href, linkLabel }: { kicker: string; title
   );
 }
 
+function HeroText({ today }: { today: Date }) {
+  return (
+    <div className="max-w-[36rem] animate-fade-up">
+      <p className="meta mb-6 hidden xl:block">{formatDate(today.toISOString().slice(0, 10))} · Pazartesi</p>
+      <p className="kicker text-ink-mute">Tarihçi · Yazar</p>
+      <h1 className="font-display text-display lg:text-[3.25rem] xl:text-[4.25rem] 2xl:text-display tracking-[-0.025em] mt-3 font-[450]">
+        Halil Berktay
+      </h1>
+      <p className="mt-5 font-display italic text-[1.3rem] sm:text-[1.5rem] lg:text-[1.25rem] xl:text-[1.5rem] leading-snug text-ink-soft">
+        Kitaplar, makaleler, köşe yazıları ve konuşma kayıtları.
+      </p>
+      <div className="mt-8 lg:mt-6 xl:mt-8">
+        <HeroSearch />
+      </div>
+    </div>
+  );
+}
+
 export default function HomePage() {
   const index = buildIndex();
   const series = ARTICLE_SERIES[0];
@@ -40,40 +58,31 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ——— HERO: portre bandı (koyu tema belirteçleriyle) ——— */}
-      <section className="dark relative overflow-hidden bg-[#1d1c18] text-ink" aria-labelledby="hero-baslik">
-        {/* Portre: masaüstünde sağa yaslı arka plan, mobilde üstte */}
-        <div className="relative lg:absolute lg:inset-y-0 lg:right-0 lg:w-[62%] xl:w-[58%]" aria-hidden>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/gorseller/portre-cizim.webp"
-            alt=""
-            width={1600}
-            height={893}
-            fetchPriority="high"
-            className="block w-full h-[21rem] sm:h-[26rem] lg:h-full object-cover object-[88%_30%] lg:object-right"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#1d1c18] via-transparent to-transparent lg:bg-gradient-to-r lg:from-[#1d1c18] lg:via-[#1d1c18]/10 lg:to-transparent" />
-        </div>
-
-        <div className="relative mx-auto max-w-page px-4 sm:px-6 lg:px-10 pb-12 sm:pb-16 lg:py-20 xl:py-24 -mt-6 lg:mt-0">
-          <div className="hidden lg:flex items-center gap-6 meta mb-12">
-            <span>{formatDate(today.toISOString().slice(0, 10))} · Pazartesi</span>
-          </div>
-          <div className="max-w-[40rem] animate-fade-up">
-            <p className="kicker text-ink-mute">Tarihçi · Yazar</p>
-            <h1 id="hero-baslik" className="font-display text-display tracking-[-0.025em] mt-4 font-[450]">
-              Halil Berktay
-            </h1>
-            <p className="mt-6 font-display italic text-[1.4rem] sm:text-[1.6rem] leading-snug text-ink-soft">
-              Kitaplar, makaleler, köşe yazıları ve konuşma kayıtları.
-            </p>
-            <div className="mt-10">
-              <HeroSearch />
+      {/* ——— HERO: portre çizimi ———
+          Geniş ekranda (lg+) metin çizimin koyu alanının üstünde durur.
+          Daha dar ekranlarda çizim üstte, metin altta. */}
+      <section className="bg-[#f6efe5] dark:bg-paper" aria-label="Giriş">
+        <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 pt-6 sm:pt-8 lg:py-10">
+          <div className="relative overflow-hidden bg-[#1d1c18]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/gorseller/portre-cizim.webp"
+              srcSet="/gorseller/portre-cizim-1000.webp 1000w, /gorseller/portre-cizim.webp 2000w"
+              sizes="(min-width: 1440px) 1360px, 100vw"
+              alt="Halil Berktay'ın mürekkep çizimi portresi"
+              width={2000}
+              height={1085}
+              fetchPriority="high"
+              className="block w-full h-[19rem] sm:h-[26rem] lg:h-auto object-cover object-right"
+            />
+            {/* lg+: metin koyu alanın üstünde (koyu tema belirteçleriyle) */}
+            <div className="dark hidden lg:flex absolute inset-y-0 left-0 w-[47%] flex-col justify-center px-8 xl:px-12 2xl:px-16 text-ink">
+              <HeroText today={today} />
             </div>
-            <p className="meta !text-[0.65rem] mt-10 inline-block border border-dashed border-ink-mute/50 px-2 py-0.5 rounded">
-              Taslak portre · yapay zekâ ile üretildi, onay bekliyor
-            </p>
+          </div>
+          {/* lg altı: metin çizimin altında */}
+          <div className="lg:hidden pt-8 pb-12 sm:pb-14">
+            <HeroText today={today} />
           </div>
         </div>
       </section>
