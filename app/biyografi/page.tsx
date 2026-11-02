@@ -6,7 +6,7 @@ import { Timeline, type TLItem } from "@/components/Timeline";
 
 export const metadata: Metadata = {
   title: "Biyografi",
-  description: "Halil Berktay'ın akademik ve entelektüel güzergâhı: eğitim, akademi, yayınlar ve kamusal yazarlık.",
+  description: "Halil Berktay'ın akademik ve entelektüel yolculuğu: eğitim, akademi, yayınlar ve kamusal yazarlık.",
 };
 
 export default function BiographyPage() {
