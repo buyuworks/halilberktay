@@ -7,6 +7,7 @@ import { Menu, Search, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { cx } from "@/lib/format";
 import { NAV, openSearch } from "@/lib/nav";
+import { loadArchiveIndex } from "@/lib/useArchiveIndex";
 
 
 export function SiteHeader() {
@@ -60,6 +61,8 @@ export function SiteHeader() {
         <div className="ml-auto lg:ml-2 flex items-center gap-1.5">
           <button
             onClick={() => openSearch()}
+            onPointerEnter={() => void loadArchiveIndex().catch(() => {})}
+            onFocus={() => void loadArchiveIndex().catch(() => {})}
             className="group flex items-center gap-2 h-9 pl-3 pr-2 border border-rule hover:border-ink-mute rounded-full text-ink-soft hover:text-ink transition-colors"
             aria-label="Arşivde ara"
           >

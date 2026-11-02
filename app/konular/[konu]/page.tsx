@@ -118,7 +118,7 @@ export default async function TopicPage({ params }: { params: Promise<{ konu: st
               <ul className="grid sm:grid-cols-2 gap-px bg-rule border border-rule">
                 {series.map(({ s, parts }, i) => (
                   <li key={s.id} className={`bg-paper ${i === series.length - 1 && series.length % 2 ? "sm:col-span-2" : ""}`}>
-                    <Link href={`/yazilar/${parts[0].slug}/`} className="group block p-5 hover:bg-paper-raised h-full">
+                    <Link href={`/diziler/${s.id}/`} className="group block p-5 hover:bg-paper-raised h-full">
                       <span className="meta">
                         {parts.length} bölüm · {parts[0].publishedAt.slice(0, 4)}
                       </span>

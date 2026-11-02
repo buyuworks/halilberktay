@@ -97,7 +97,7 @@ export default async function YearPage({ params }: { params: Promise<{ yil: stri
               <ul className="divide-y divide-rule border-y border-rule">
                 {series.map(({ s, parts }) => (
                   <li key={s.id}>
-                    <Link href={`/yazilar/${parts[0].slug}/`} className="group flex items-baseline justify-between gap-4 py-3">
+                    <Link href={`/diziler/${s.id}/`} className="group flex items-baseline justify-between gap-4 py-3">
                       <span className="font-display text-lg leading-snug link-underline">{s.title}</span>
                       <span className="meta tabular-nums shrink-0">{parts.length} bölüm</span>
                     </Link>

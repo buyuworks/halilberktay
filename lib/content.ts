@@ -145,3 +145,23 @@ export function columnYears(): [string, number][] {
   for (const a of ARTICLES) if (a.kind === "Köşe Yazısı") m.set(a.publishedAt.slice(0, 4), (m.get(a.publishedAt.slice(0, 4)) ?? 0) + 1);
   return [...m.entries()].sort((a, b) => b[0].localeCompare(a[0]));
 }
+
+/** Dizi içinde tekrarlanan "Dizi adı (n)" önekini atar */
+export function shortTitle(a: Article) {
+  if (!a.series) return a.title;
+  const t = a.title.replace(/^.*?\(\s*\d+[ab]?\s*\)\s*[:–-]?\s*/, "").replace(/^\d+[ab]?\s*[:–-]\s*/, "");
+  if (t.length <= 2 || t === a.title) return a.title;
+  return t.charAt(0).toLocaleUpperCase("tr") + t.slice(1);
+}
+
+export const partLabel = (a: Article) => a.series?.label ?? String(a.series?.part ?? "");
+export const seriesHref = (id: string) => `/diziler/${id}/`;
+
+/** Tüm yazı dizileri: bölümler sıralı, başlangıç/bitiş tarihi */
+export function allSeries() {
+  return ARTICLE_SERIES.map((s) => {
+    const parts = ARTICLES.filter((a) => a.series?.id === s.id).sort((a, b) => a.series!.part - b.series!.part);
+    const dates = parts.map((a) => a.publishedAt).sort();
+    return { s, parts, start: dates[0] ?? "", end: dates[dates.length - 1] ?? "" };
+  }).filter((x) => x.parts.length > 0);
+}

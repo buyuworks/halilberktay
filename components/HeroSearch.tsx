@@ -2,6 +2,7 @@
 
 import { Search } from "lucide-react";
 import { openSearch } from "@/lib/nav";
+import { loadArchiveIndex } from "@/lib/useArchiveIndex";
 import { useEffect, useState } from "react";
 
 const SUGGESTIONS = ["Feodalizm", "Köprülü", "Fransız Devrimi", "Taraf", "Milli Mücadele", "Nâzım"];
@@ -13,6 +14,8 @@ export function HeroSearch() {
     <div>
       <button
         onClick={() => openSearch()}
+        onPointerEnter={() => void loadArchiveIndex().catch(() => {})}
+        onFocus={() => void loadArchiveIndex().catch(() => {})}
         className="group w-full flex items-center gap-4 h-16 px-5 bg-paper-raised border border-rule hover:border-ink-mute transition-colors text-left shadow-[0_1px_0_rgba(0,0,0,0.03)]"
       >
         <Search size={20} strokeWidth={1.6} className="text-ink-mute" />

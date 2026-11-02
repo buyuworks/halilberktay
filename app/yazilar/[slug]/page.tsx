@@ -3,7 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { ARTICLES, ARTICLE_SERIES } from "@/data/articles";
-import { relatedArticles } from "@/lib/content";
+import { relatedArticles, shortTitle, partLabel, seriesHref } from "@/lib/content";
 import { formatDate, formatDateShort, cx } from "@/lib/format";
 import { ReadingProgress, ReaderControls, TableOfContents, CopyCitation } from "@/components/ReaderTools";
 import { TopicTag } from "@/components/EntryViews";
@@ -24,13 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-/** Dizi içinde tekrarlanan "Dizi adı (n)" önekini atar */
-const shortTitle = (a: Article) => {
-  if (!a.series) return a.title;
-  const t = a.title.replace(/^.*?\(\s*\d+[ab]?\s*\)\s*[:–-]?\s*/, "").replace(/^\d+[ab]?\s*[:–-]\s*/, "");
-  return t.length > 2 ? t : a.title;
-};
-const pl = (a: Article) => a.series?.label ?? String(a.series?.part ?? "");
+const pl = partLabel;
 
 function citationFor(a: Article) {
   const date = formatDate(a.publishedAt, a.datePrecision);
@@ -84,7 +78,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           {series && (
             <>
               <span>/</span>
-              <span className="text-ink-soft">{series.title}</span>
+              <Link href={seriesHref(series.id)} className="text-ink-soft hover:text-ink">{series.title}</Link>
             </>
           )}
         </nav>
@@ -120,7 +114,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             {series && (
               <nav aria-label="Dizideki yazılar">
                 <p className="kicker text-ink-mute mb-1">Dizi</p>
-                <p className="font-display text-lg leading-snug mb-3">{series.title}</p>
+                <Link href={seriesHref(series.id)} className="block font-display text-lg leading-snug mb-3 hover:text-accent">{series.title}</Link>
                 <ol className="space-y-1.5 max-h-[50vh] overflow-y-auto pr-2 scrollbar-none">
                   {siblings.map((s) => (
                     <li key={s.id}>

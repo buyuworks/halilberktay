@@ -48,7 +48,7 @@ export default function WritingsPage() {
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-rule border border-rule">
           {featured.map(({ s, parts, start }) => (
-            <Link key={s.id} href={`/yazilar/${parts[0].slug}/`} className="group bg-paper hover:bg-paper-raised p-6 flex flex-col min-h-[15rem]">
+            <Link key={s.id} href={`/diziler/${s.id}/`} className="group bg-paper hover:bg-paper-raised p-6 flex flex-col min-h-[15rem]">
               <span className="font-display text-6xl text-accent/80 leading-none tabular-nums">{parts.length}</span>
               <span className="meta mt-1">bölüm · {start.slice(0, 4)}</span>
               <span className="font-display text-2xl leading-tight mt-5 link-underline">{s.title}</span>
@@ -65,7 +65,7 @@ export default function WritingsPage() {
           <ul className="columns-1 md:columns-2 lg:columns-3 gap-10 pb-6">
             {rest.map(({ s, parts, start }) => (
               <li key={s.id} className="break-inside-avoid py-2 border-b border-rule/70">
-                <Link href={`/yazilar/${parts[0].slug}/`} className="group grid grid-cols-[3rem_1fr_auto] gap-3 items-baseline">
+                <Link href={`/diziler/${s.id}/`} className="group grid grid-cols-[3rem_1fr_auto] gap-3 items-baseline">
                   <span className="font-mono text-[0.75rem] text-ink-mute">{start.slice(0, 4)}</span>
                   <span className="leading-snug link-underline">{s.title}</span>
                   <span className="meta tabular-nums">{parts.length}</span>
@@ -74,6 +74,7 @@ export default function WritingsPage() {
             ))}
           </ul>
         </details>
+        <Link href="/diziler/" className="inline-block mt-4 text-accent hover:underline">Dizilerin tam listesi →</Link>
       </section>
 
       <div className="grid lg:grid-cols-12 gap-14 mt-20">
