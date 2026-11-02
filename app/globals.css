@@ -1,0 +1,230 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/* Karanlık mod: <html class="dark"> ile çalışır (sistem tercihi + elle seçim) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ------------------------------------------------------------------
+   TASARIM SİSTEMİ — renk belirteçleri (light / dark)
+   Kağıt, mürekkep, kiremit/bordo vurgu ve ince çizgi tonları.
+------------------------------------------------------------------- */
+:root {
+  --paper: #f6f2ea;          /* zemin: sıcak kağıt */
+  --paper-raised: #fbf9f4;   /* kart / panel */
+  --paper-sunk: #ede7db;     /* gömülü alan, etiket zemini */
+  --ink: #1b1a17;            /* ana metin */
+  --ink-soft: #4a463f;       /* ikincil metin */
+  --ink-mute: #7a7468;       /* üst veri, tarih */
+  --rule: #d9d1c2;           /* 1px ayırıcı çizgi */
+  --rule-strong: #1b1a17;    /* kalın editoryal çizgi */
+  --accent: #8b261d;         /* kiremit-bordo */
+  --accent-soft: #f1dcd6;    /* vurgu zemini */
+  --accent-ink: #6e1d16;     /* vurgu üstünde koyu metin */
+  --navy: #1f3550;           /* akademik lacivert (ikincil vurgu) */
+  --highlight: #f3e2a9;      /* arama eşleşmesi */
+  color-scheme: light;
+}
+
+.dark {
+  --paper: #15130f;
+  --paper-raised: #1d1a15;
+  --paper-sunk: #24201a;
+  --ink: #ebe5d8;
+  --ink-soft: #c2baa9;
+  --ink-mute: #8d8576;
+  --rule: #353028;
+  --rule-strong: #ebe5d8;
+  --accent: #e0846f;
+  --accent-soft: #3a1f19;
+  --accent-ink: #f2b7a7;
+  --navy: #9db6d4;
+  --highlight: #5b4a1c;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-paper-sunk: var(--paper-sunk);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-mute: var(--ink-mute);
+  --color-rule: var(--rule);
+  --color-rule-strong: var(--rule-strong);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-ink: var(--accent-ink);
+  --color-navy: var(--navy);
+  --color-highlight: var(--highlight);
+
+  /* Tipografi: Newsreader (başlık, optik boyutlu), Source Serif 4 (uzun metin),
+     Inter (arayüz), IBM Plex Mono (arşiv künyesi / tarih) */
+  --font-display: var(--font-newsreader), "Georgia", serif;
+  --font-serif: var(--font-source-serif), "Georgia", serif;
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+
+  /* Tipografik ölçek (1.25 oranlı, büyük başlıklarda akışkan) */
+  --text-kicker: 0.6875rem;
+  --text-kicker--letter-spacing: 0.14em;
+  --text-display: clamp(2.75rem, 6vw, 5.25rem);
+  --text-display--line-height: 1.02;
+  --text-headline: clamp(1.9rem, 3.4vw, 2.75rem);
+  --text-headline--line-height: 1.1;
+
+  /* Okuma genişliği: ~68 karakter */
+  --container-measure: 40rem;
+  --container-page: 84rem;
+
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    text-rendering: optimizeLegibility;
+    font-feature-settings: "kern", "liga", "onum";
+  }
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background: var(--accent);
+    color: var(--paper);
+  }
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  mark {
+    background: var(--highlight);
+    color: inherit;
+    padding: 0 0.08em;
+    border-radius: 2px;
+  }
+}
+
+@layer components {
+  /* Küçük büyük harf etiket — mecra, tür, bölüm başlıkları */
+  .kicker {
+    font-family: var(--font-sans);
+    font-size: var(--text-kicker);
+    letter-spacing: var(--text-kicker--letter-spacing);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  /* Arşiv künyesi — tarih ve sayısal üst veri */
+  .meta {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.01em;
+    color: var(--ink-mute);
+    font-variant-numeric: tabular-nums;
+  }
+  .rule-top {
+    border-top: 1px solid var(--rule);
+  }
+  .rule-double {
+    border-top: 3px double var(--rule-strong);
+  }
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.35s var(--ease-editorial);
+  }
+  .link-underline:hover,
+  .group:hover .link-underline {
+    background-size: 100% 1px;
+  }
+  /* Uzun metin gövdesi */
+  .prose-berktay {
+    font-family: var(--font-serif);
+    font-size: calc(1.125rem * var(--reader-scale, 1));
+    line-height: 1.72;
+    color: var(--ink);
+    max-width: var(--container-measure);
+    hyphens: auto;
+  }
+  .prose-berktay p + p {
+    text-indent: 1.5em;
+  }
+  .prose-berktay h2 {
+    font-family: var(--font-display);
+    font-size: 1.6em;
+    line-height: 1.2;
+    margin: 2.2em 0 0.8em;
+    font-weight: 500;
+    scroll-margin-top: 6rem;
+  }
+  .prose-berktay h2 + p {
+    text-indent: 0;
+  }
+  .prose-berktay blockquote {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-size: 1.35em;
+    line-height: 1.4;
+    border-left: 2px solid var(--accent);
+    padding-left: 1.25em;
+    margin: 1.8em 0;
+    color: var(--ink-soft);
+  }
+  .dropcap::first-letter {
+    font-family: var(--font-display);
+    float: left;
+    font-size: 4.4em;
+    line-height: 0.82;
+    padding: 0.06em 0.1em 0 0;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Çift başparmaklı yıl aralığı kaydırıcısı */
+.range-thumb {
+  pointer-events: none;
+  appearance: none;
+  background: transparent;
+}
+.range-thumb::-webkit-slider-thumb {
+  pointer-events: auto;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--paper-raised);
+  border: 2px solid var(--accent);
+  cursor: grab;
+}
+.range-thumb::-moz-range-thumb {
+  pointer-events: auto;
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+  background: var(--paper-raised);
+  border: 2px solid var(--accent);
+  cursor: grab;
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: none; }
+}
+.animate-fade-up {
+  animation: fade-up 0.5s var(--ease-editorial) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
