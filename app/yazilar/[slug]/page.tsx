@@ -183,12 +183,6 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                     {a.source}&apos;te oku <ArrowUpRight size={16} />
                   </a>
                 )}
-                <p className="mt-6 meta">
-                  Okuma deneyiminin tam hâlini görmek için:{" "}
-                  <Link href="/hakkinda/" className="underline underline-offset-2 hover:text-ink">
-                    Arşiv hakkında
-                  </Link>
-                </p>
               </div>
             </>
           )}

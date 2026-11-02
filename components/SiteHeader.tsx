@@ -37,7 +37,6 @@ export function SiteHeader() {
           <span className="font-display text-[1.6rem] leading-none tracking-[-0.01em] font-medium">
             Halil Berktay
           </span>
-          <span className="hidden xl:inline kicker text-ink-mute">Arşiv &amp; Defter</span>
         </Link>
 
         <nav aria-label="Ana menü" className="hidden lg:flex items-center gap-6 ml-auto">

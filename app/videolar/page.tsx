@@ -13,10 +13,9 @@ export default function VideosPage() {
     <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 pt-10 sm:pt-14">
       <header className="max-w-3xl mb-10">
         <p className="kicker text-accent">Video &amp; ses kütüphanesi</p>
-        <h1 className="font-display text-display tracking-[-0.02em] mt-3">Konuşan tarih</h1>
+        <h1 className="font-display text-display tracking-[-0.02em] mt-3">Video ve ses kayıtları</h1>
         <p className="mt-5 font-serif text-xl text-ink-soft leading-relaxed">
-          Anlatım dizileri, tartışma programları, konferanslar ve podcast kayıtları; diziye ve konuya göre düzenlenmiş,
-          site içinde sinema modunda izlenebilir.
+          Anlatım dizileri, tartışma programları, konferanslar ve podcast kayıtları.
         </p>
       </header>
       <Suspense>

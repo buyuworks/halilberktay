@@ -31,9 +31,9 @@ const plexMono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   alternates: { types: { "application/rss+xml": [{ url: "/rss.xml", title: "Halil Berktay · Yeni yazılar" }] } },
-  title: { default: "Halil Berktay · Arşiv ve Defter", template: "%s · Halil Berktay" },
+  title: { default: "Halil Berktay", template: "%s · Halil Berktay" },
   description:
-    "Tarihçi Prof. Dr. Halil Berktay'ın kitapları, köşe yazıları, akademik makaleleri, video ve ses kayıtları ile güncel okumalarını bir araya getiren dijital arşiv.",
+    "Halil Berktay'ın kitapları, makaleleri, köşe yazıları ve konuşma kayıtları.",
   openGraph: { locale: "tr_TR", type: "website", siteName: "Halil Berktay" },
 };
 

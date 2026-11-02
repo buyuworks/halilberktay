@@ -25,10 +25,9 @@ export default function SeriesIndexPage() {
       </nav>
       <header className="mt-6 max-w-3xl">
         <p className="kicker text-accent">Yazı dizileri</p>
-        <h1 className="font-display text-display tracking-[-0.02em] mt-2">Bölüm bölüm</h1>
+        <h1 className="font-display text-display tracking-[-0.02em] mt-2">Yazı dizileri</h1>
         <p className="mt-4 font-serif text-xl text-ink-soft leading-relaxed">
-          Berktay bir konuyu çoğu zaman tek yazıda değil, numaralı bir dizide işler. {list.length} dizi, toplam {total} bölüm;
-          her biri baştan sona okunabilecek bir rota.
+          {list.length} dizi, toplam {total} bölüm. Her dizi bölüm sırasıyla listelenir.
         </p>
       </header>
 

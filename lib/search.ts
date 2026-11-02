@@ -15,7 +15,7 @@ export function createSearcher(entries: ArchiveEntry[], topicLabel: (t: string) 
   const docs: Doc[] = entries.map((e) => ({
     e,
     title: fold(e.title),
-    summary: fold(e.summary),
+    summary: fold(e.summary ?? ""),
     meta: fold([e.source, e.seriesLabel, e.kind, e.citation, e.type, ...e.tags.map(topicLabel), e.year].filter(Boolean).join(" ")),
   }));
   const fuse = new Fuse(docs, {

@@ -33,10 +33,9 @@ export default function WritingsPage() {
     <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 pt-10 sm:pt-14">
       <header className="max-w-3xl">
         <p className="kicker text-accent">Yazılar</p>
-        <h1 className="font-display text-display tracking-[-0.02em] mt-3">Köşe ve kürsü</h1>
+        <h1 className="font-display text-display tracking-[-0.02em] mt-3">Yazılar</h1>
         <p className="mt-5 font-serif text-xl text-ink-soft leading-relaxed">
-          Toplum ve Bilim&apos;deki ilk makalelerden Taraf ve Serbestiyet köşelerine, kırk yılı aşkın bir yazı serüveni.
-          Berktay sık sık numaralı diziler hâlinde yazar; diziler burada tek bir okuma rotası olarak toplanır.
+          Köşe yazıları, yazı dizileri ve akademik makaleler. Diziler bölüm sırasıyla bir arada.
         </p>
       </header>
 

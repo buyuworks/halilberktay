@@ -47,7 +47,7 @@ export const TIMELINE: TimelineEvent[] = [
   },
   {
     year: 1987,
-    title: "Feodalizm tartışmasına uluslararası katkı",
+    title: "The Journal of Peasant Studies'te makale",
     kind: "Yayın",
     detail: "\"The feudalism debate: the Turkish end\", The Journal of Peasant Studies.",
   },

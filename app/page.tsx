@@ -59,8 +59,6 @@ export default function HomePage() {
         <div className="relative mx-auto max-w-page px-4 sm:px-6 lg:px-10 pb-12 sm:pb-16 lg:py-20 xl:py-24 -mt-6 lg:mt-0">
           <div className="hidden lg:flex items-center gap-6 meta mb-12">
             <span>{formatDate(today.toISOString().slice(0, 10))} · Pazartesi</span>
-            <span className="h-px w-16 bg-rule" />
-            <span>Tarih · Arşiv · Defter</span>
           </div>
           <div className="max-w-[40rem] animate-fade-up">
             <p className="kicker text-ink-mute">Tarihçi · Yazar</p>
@@ -68,8 +66,7 @@ export default function HomePage() {
               Halil Berktay
             </h1>
             <p className="mt-6 font-display italic text-[1.4rem] sm:text-[1.6rem] leading-snug text-ink-soft">
-              Kabileden feodalizme, Köprülü&apos;den Taraf&apos;a, Fransız Devrimi&apos;nden bugünün Türkiyesine: yarım asrı aşan
-              bir düşünce emeğinin arşivi.
+              Kitaplar, makaleler, köşe yazıları ve konuşma kayıtları.
             </p>
             <div className="mt-10">
               <HeroSearch />
@@ -162,7 +159,7 @@ export default function HomePage() {
 
       {/* ——— BİRLEŞİK ARŞİV ——— */}
       <section className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 mt-24">
-        <SectionHead kicker="Birleşik arşiv" title="Yazılar, kayıtlar, kitaplar — tek rafta" href="/arsiv/" linkLabel="Gelişmiş arama" />
+        <SectionHead kicker="Birleşik arşiv" title="Arşivden" href="/arsiv/" linkLabel="Gelişmiş arama" />
         <ArchiveShowcase {...showcaseData(index)} />
       </section>
 
@@ -172,7 +169,7 @@ export default function HomePage() {
           <div className="flex items-end justify-between gap-6 border-t-[3px] border-double border-[#ebe5d8]/40 pt-5 mb-10">
             <div>
               <p className="kicker text-[#e0846f]">Video & ses kütüphanesi</p>
-              <h2 className="font-display text-headline mt-2">Konuşan tarih</h2>
+              <h2 className="font-display text-headline mt-2">Video ve ses kayıtları</h2>
             </div>
             <Link href="/videolar/" className="text-sm opacity-80 hover:opacity-100 underline-offset-4 hover:underline shrink-0">
               Tüm kayıtlar →
@@ -184,7 +181,7 @@ export default function HomePage() {
 
       {/* ——— KİTAPLAR ——— */}
       <section className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 mt-24">
-        <SectionHead kicker="Bibliyografya" title="1983'ten bugüne kitaplar" href="/kitaplar/" linkLabel="Tam bibliyografya" />
+        <SectionHead kicker="Bibliyografya" title="Kitaplar" href="/kitaplar/" linkLabel="Tam bibliyografya" />
         <div className="flex gap-6 sm:gap-8 overflow-x-auto scrollbar-none pb-6 -mx-4 px-4 sm:mx-0 sm:px-0 snap-x">
           {[...BOOKS]
             .filter((b) => b.id !== "b-2018-koprulu")
@@ -203,7 +200,7 @@ export default function HomePage() {
 
       {/* ——— BİYOGRAFİ ŞERİDİ ——— */}
       <section className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 mt-24">
-        <SectionHead kicker="Biyografi" title="Bir tarihçinin yolculuğu" href="/biyografi/" linkLabel="Zaman çizelgesi" />
+        <SectionHead kicker="Biyografi" title="Biyografi" href="/biyografi/" linkLabel="Zaman çizelgesi" />
         <ol className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 border-t border-rule">
           {[...TIMELINE]
             .filter((t) => t.kind === "Eğitim" || t.kind === "Akademi")

@@ -16,7 +16,7 @@ export const TOPICS: Record<TopicId, { label: string; short?: string; descriptio
   },
   "solun-tarihi": {
     label: "Solun Tarihi",
-    description: "Türkiye ve dünya solunun siyasi ve kültürel serüveni.",
+    description: "Türkiye'de ve dünyada solun siyasi ve kültürel tarihi.",
   },
   devrimler: {
     label: "Devrimler Çağı",
@@ -24,7 +24,7 @@ export const TOPICS: Record<TopicId, { label: string; short?: string; descriptio
   },
   "guncel-siyaset": {
     label: "Güncel Siyaset",
-    description: "Tarihçi gözüyle bugünün Türkiyesi.",
+    description: "Türkiye'de güncel siyaset.",
   },
   "feodalizm-atut": {
     label: "Feodalizm / ATÜT",

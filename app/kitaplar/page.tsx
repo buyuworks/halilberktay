@@ -15,7 +15,7 @@ export default function BooksPage() {
           <p className="kicker text-accent">Bibliyografya</p>
           <h1 className="font-display text-display tracking-[-0.02em] mt-3">Kitaplar</h1>
           <p className="mt-5 font-serif text-xl text-ink-soft leading-relaxed max-w-2xl">
-            1983&apos;teki ilk iki kitaptan Taraf derlemelerine; telif eserler, ortak çalışmalar, editörlükler ve çeviriler.
+            Telif kitaplar, ortak çalışmalar, editörlükler ve çeviriler.
           </p>
         </div>
         <p className="lg:col-span-4 meta lg:text-right">

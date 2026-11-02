@@ -19,7 +19,7 @@ export function HeroSearch() {
         className="group w-full flex items-center gap-4 h-16 px-5 bg-paper-raised border border-rule hover:border-ink-mute transition-colors text-left shadow-[0_1px_0_rgba(0,0,0,0.03)]"
       >
         <Search size={20} strokeWidth={1.6} className="text-ink-mute" />
-        <span className="flex-1 font-display text-xl text-ink-mute truncate"><span className="hidden sm:inline">Yarım asırlık arşivde arayın…</span><span className="sm:hidden">Arşivde arayın…</span></span>
+        <span className="flex-1 font-display text-xl text-ink-mute truncate">Arşivde arayın…</span>
         <kbd className="hidden sm:inline meta border border-rule rounded px-2 py-0.5">{mac ? "⌘" : "Ctrl"} K</kbd>
       </button>
       <div className="mt-3 flex flex-wrap items-center gap-x-1 gap-y-2">

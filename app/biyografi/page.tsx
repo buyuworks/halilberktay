@@ -6,7 +6,7 @@ import { Timeline, type TLItem } from "@/components/Timeline";
 
 export const metadata: Metadata = {
   title: "Biyografi",
-  description: "Halil Berktay'ın akademik ve entelektüel yolculuğu: eğitim, akademi, yayınlar ve kamusal yazarlık.",
+  description: "Halil Berktay'ın akademik ve entelektüel biyografisi: eğitim, akademi, yayınlar ve kamusal yazarlık.",
 };
 
 export default function BiographyPage() {
@@ -24,7 +24,7 @@ export default function BiographyPage() {
       <header className="grid lg:grid-cols-12 gap-10">
         <div className="lg:col-span-7">
           <p className="kicker text-accent">Biyografi</p>
-          <h1 className="font-display text-display tracking-[-0.02em] mt-3">Bir tarihçinin yolculuğu</h1>
+          <h1 className="font-display text-display tracking-[-0.02em] mt-3">Biyografi</h1>
         </div>
         <div className="lg:col-span-5 lg:pt-10 font-serif text-lg leading-relaxed text-ink-soft space-y-4">
           <p>
@@ -37,7 +37,7 @@ export default function BiographyPage() {
             Bölümü&apos;nün başkanı. Akademik çalışmalarının yanı sıra Taraf ve Serbestiyet&apos;teki köşe yazıları ve video programlarıyla
             kamusal tartışmanın sürekli seslerinden biri.
           </p>
-          <p className="meta">Kaynak: İbn Haldun Üniversitesi özgeçmişi, Wikipedia. Bkz. <Link href="/hakkinda/" className="underline">Arşiv hakkında</Link>.</p>
+          <p className="meta">Kaynak: İbn Haldun Üniversitesi özgeçmişi, Wikipedia. Bkz. <Link href="/hakkinda/" className="underline">Bu site hakkında</Link>.</p>
         </div>
       </header>
 
