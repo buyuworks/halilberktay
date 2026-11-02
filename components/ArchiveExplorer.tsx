@@ -6,6 +6,7 @@ import { Search, SlidersHorizontal, X } from "lucide-react";
 import type { ArchiveEntry } from "@/lib/content";
 import type { ContentType, TopicId } from "@/lib/types";
 import { TOPICS } from "@/data/topics";
+import { useArchiveIndex } from "@/lib/useArchiveIndex";
 import { createSearcher } from "@/lib/search";
 import { ArchiveRow } from "@/components/EntryViews";
 import { cx } from "@/lib/format";
@@ -26,7 +27,32 @@ function parseList(v: string | null) {
   return v ? v.split(",").filter(Boolean) : [];
 }
 
-export function ArchiveExplorer({ entries }: { entries: ArchiveEntry[] }) {
+/** Dizini statik JSON'dan yükler; yüklenene kadar iskelet gösterir */
+export function ArchiveExplorer() {
+  const { entries, error } = useArchiveIndex();
+  if (!entries)
+    return (
+      <div className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 py-16" role="status" aria-live="polite">
+        <p className="meta">{error ? "Arşiv dizini yüklenemedi; sayfayı yenilemeyi deneyin." : "Arşiv dizini yükleniyor…"}</p>
+        {!error && (
+          <div className="mt-6 space-y-6 animate-pulse" aria-hidden>
+            {[0, 1, 2, 3].map((i) => (
+              <div key={i} className="grid grid-cols-12 gap-6 border-b border-rule pb-6">
+                <div className="col-span-3 h-4 bg-paper-sunk" />
+                <div className="col-span-9 space-y-2">
+                  <div className="h-6 w-3/4 bg-paper-sunk" />
+                  <div className="h-4 w-full bg-paper-sunk" />
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    );
+  return <ArchiveExplorerView entries={entries} />;
+}
+
+function ArchiveExplorerView({ entries }: { entries: ArchiveEntry[] }) {
   const router = useRouter();
   const sp = useSearchParams();
 

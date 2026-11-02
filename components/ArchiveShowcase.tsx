@@ -13,22 +13,15 @@ import { CinemaModal } from "@/components/CinemaModal";
 import { BookCover } from "@/components/BookCover";
 import { TypeLabel } from "@/components/EntryViews";
 import { cx, formatDateShort } from "@/lib/format";
+import { SHOWCASE_TOPICS, SHOWCASE_TYPES } from "@/lib/showcase";
 
-const TYPES: ("Tümü" | ContentType)[] = ["Tümü", "Makale", "Video", "Ses Kaydı", "Kitap"];
+const TYPES = SHOWCASE_TYPES;
 const FEATURED_SERIES = "Ulusal Kurtuluş Savaşı mı, Milli Mücadele mi?";
-const FEATURED_TOPICS: TopicId[] = [
-  "erken-cumhuriyet",
-  "osmanli-iktisat",
-  "solun-tarihi",
-  "devrimler",
-  "guncel-siyaset",
-  "feodalizm-atut",
-  "somurgecilik",
-  "tarih-yazimi",
-];
+const FEATURED_TOPICS = SHOWCASE_TOPICS;
 
 /* Ana sayfadaki Birleşik Arşiv vitrini: tür × konu çapraz filtresi */
-export function ArchiveShowcase({ entries }: { entries: ArchiveEntry[] }) {
+/** entries: vitrin için önceden seçilmiş alt küme; counts: tam arşivdeki sayılar ("Tür|konu") */
+export function ArchiveShowcase({ entries, counts }: { entries: ArchiveEntry[]; counts?: Record<string, number> }) {
   const [type, setType] = useState<(typeof TYPES)[number]>("Tümü");
   const [topic, setTopic] = useState<TopicId | null>(null);
   const [video, setVideo] = useState<Video | null>(null);
@@ -62,6 +55,7 @@ export function ArchiveShowcase({ entries }: { entries: ArchiveEntry[] }) {
   }, [filtered, isMix]);
   const shown = diversified.slice(0, isMix ? 8 : 9);
   const count = (t: (typeof TYPES)[number]) =>
+    counts?.[`${t}|${topic ?? ""}`] ??
     pool.filter((e) => (t === "Tümü" || e.type === t) && (!topic || e.tags.includes(topic))).length;
 
   const params = new URLSearchParams();
@@ -167,7 +161,7 @@ function ShowcaseCell({ e, big, onVideo }: { e: ArchiveEntry; big: boolean; onVi
       </div>
       {e.seriesLabel && (
         <p className="meta mt-3 !text-ink-soft">
-          {e.seriesLabel} · {e.part}
+          {e.seriesLabel} · {e.partLabel ?? e.part}
         </p>
       )}
       <h3 className={cx("mt-2 font-display leading-[1.12]", big ? "text-3xl sm:text-[2.4rem]" : "text-[1.4rem]")}>

@@ -22,12 +22,15 @@ export interface ArchiveEntry {
   external?: string;
   date: string;
   year: number;
-  datePrecision?: "day" | "year";
+  datePrecision?: "day" | "month" | "year";
   source: string; // mecra / seri / yayınevi
   tags: TopicId[];
   readingTime?: number;
   seriesLabel?: string;
   part?: number;
+  /** Görüntülenecek bölüm etiketi (ör. "14b") */
+  partLabel?: string;
+  lang?: "en";
   youtubeId?: string | null;
   kind?: string;
   citation?: string;
@@ -57,6 +60,8 @@ export function buildIndex(): ArchiveEntry[] {
     readingTime: x.readingTime,
     seriesLabel: x.series ? seriesTitle(x.series.id) : undefined,
     part: x.series?.part,
+    partLabel: x.series ? (x.series.label ?? String(x.series.part)) : undefined,
+    lang: x.language,
     kind: x.kind,
     citation: x.citation,
   }));
@@ -133,3 +138,10 @@ export const STATS = {
   books: BOOKS.length,
   videos: VIDEOS.length,
 };
+
+/** Köşe yazılarının yıllara dağılımı, yeniden eskiye: [yıl, sayı][] */
+export function columnYears(): [string, number][] {
+  const m = new Map<string, number>();
+  for (const a of ARTICLES) if (a.kind === "Köşe Yazısı") m.set(a.publishedAt.slice(0, 4), (m.get(a.publishedAt.slice(0, 4)) ?? 0) + 1);
+  return [...m.entries()].sort((a, b) => b[0].localeCompare(a[0]));
+}

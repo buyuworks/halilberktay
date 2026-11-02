@@ -41,14 +41,16 @@ export interface Article {
   /** Tam metin. Yoksa okuyucu özet + kaynak bağlantısı gösterir. */
   content?: ArticleBlock[];
   publishedAt: string; // ISO yyyy-mm-dd (yalnızca yıl biliniyorsa yyyy-01-01 + datePrecision)
-  datePrecision?: "day" | "year";
+  datePrecision?: "day" | "month" | "year";
   source: Source;
   kind: "Köşe Yazısı" | "Akademik Makale" | "Kitap Bölümü";
   tags: TopicId[];
   readingTime: number; // dakika
   externalUrl?: string;
   /** Berktay sıklıkla numaralı yazı dizileri yazar — dizi gezgini için */
-  series?: { id: string; part: number };
+  series?: { id: string; part: number; /** kaynaktaki bölüm etiketi (ör. "14b", "EN 1"); yoksa part */ label?: string };
+  /** Metin dili (varsayılan Türkçe) */
+  language?: "en";
   /** Akademik künye (dergi, cilt, sayfa) */
   citation?: string;
 }

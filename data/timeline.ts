@@ -84,7 +84,7 @@ export const TIMELINE: TimelineEvent[] = [
     kind: "Akademi",
     detail: "Profesör ve bölüm başkanı.",
   },
-  { year: 2019, title: "Serbestiyet'te yazmaya başladı", kind: "Kamusal", detail: "[Başlangıç yılı doğrulanacak] Köşe yazıları ve video programları." },
+  { year: 2014, title: "Serbestiyet'te yazıyor", kind: "Kamusal", detail: "Serbestiyet yazar arşivindeki en eski yazı 1 Ocak 2014 tarihli. Köşe yazıları, diziler ve video programları bugün de sürüyor." },
   {
     year: 2024,
     title: "Solun Kültür Serüveni",

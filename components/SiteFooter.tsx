@@ -32,7 +32,7 @@ export function SiteFooter() {
           <ul className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-ink-soft">
             {(Object.keys(TOPICS) as TopicId[]).map((t) => (
               <li key={t}>
-                <Link href={`/arsiv/?konu=${t}`} className="link-underline hover:text-ink">
+                <Link href={`/konular/${t}/`} className="link-underline hover:text-ink">
                   {TOPICS[t].label}
                 </Link>
               </li>

@@ -4,7 +4,6 @@ import "./globals.css";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { CommandPalette } from "@/components/CommandPalette";
-import { buildIndex } from "@/lib/content";
 
 const newsreader = Newsreader({
   subsets: ["latin", "latin-ext"],
@@ -46,7 +45,6 @@ export const viewport: Viewport = {
 const themeScript = `(function(){try{var t=localStorage.getItem('hb-theme');var d=t?t==='dark':matchMedia('(prefers-color-scheme: dark)').matches;if(d)document.documentElement.classList.add('dark');var s=localStorage.getItem('hb-reader-scale');if(s)document.documentElement.style.setProperty('--reader-scale',s);}catch(e){}})();`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const index = buildIndex();
   return (
     <html
       lang="tr"
@@ -65,7 +63,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
         </main>
         <SiteFooter />
-        <CommandPalette index={index} />
+        <CommandPalette />
       </body>
     </html>
   );

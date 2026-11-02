@@ -6,6 +6,7 @@ import { RADAR } from "@/data/radar";
 import { VIDEOS, VIDEO_SERIES } from "@/data/videos";
 import { TIMELINE } from "@/data/timeline";
 import { buildIndex, STATS } from "@/lib/content";
+import { showcaseData } from "@/lib/showcase";
 import { formatDate, formatDateShort } from "@/lib/format";
 import { HeroSearch } from "@/components/HeroSearch";
 import { RadarFeed } from "@/components/RadarFeed";
@@ -67,7 +68,7 @@ export default function HomePage() {
             <dl className="mt-4 divide-y divide-rule border-y border-rule">
               {[
                 ["Kitaplar", `${STATS.books}`, "1983 – 2018"],
-                ["Köşe yazıları", "1000+", "Taraf · Serbestiyet"],
+                ["Köşe yazıları", `${STATS.columns}`, "Serbestiyet 2014– · Taraf aktarılacak"],
                 ["Akademik metinler", `${STATS.academic}`, "1981 – 2005"],
                 ["Video & ses", "100+", "saat · Serbestiyet TV · TV · Podcast"],
               ].map(([k, v, s]) => (
@@ -80,7 +81,7 @@ export default function HomePage() {
                 </div>
               ))}
             </dl>
-            <p className="meta mt-3">Prototipte {index.length} kayıt yüklü; tam aktarım sürüyor.</p>
+            <p className="meta mt-3">Dizinde {index.length} kayıt · yazıların tam metinleri aktarılıyor.</p>
           </aside>
         </div>
       </section>
@@ -146,7 +147,7 @@ export default function HomePage() {
       {/* ——— BİRLEŞİK ARŞİV ——— */}
       <section className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 mt-24">
         <SectionHead kicker="Birleşik arşiv" title="Yazılar, kayıtlar, kitaplar — tek rafta" href="/arsiv/" linkLabel="Gelişmiş arama" />
-        <ArchiveShowcase entries={index} />
+        <ArchiveShowcase {...showcaseData(index)} />
       </section>
 
       {/* ——— VİDEO BANDI ——— */}

@@ -65,7 +65,7 @@ export const TOPICS: Record<TopicId, { label: string; short?: string; descriptio
 export const TOPIC_IDS = Object.keys(TOPICS) as TopicId[];
 
 export const SOURCES: Record<Source, { description: string; years: string }> = {
-  Serbestiyet: { description: "Günlük köşe yazıları ve video programları", years: "2019–" },
+  Serbestiyet: { description: "Köşe yazıları, yazı dizileri ve video programları", years: "2014–" },
   "Serbestiyet in English": { description: "Notes on History and Culture", years: "2021–" },
   Taraf: { description: "Köşe yazıları (Weimar Türkiyesi, Özgürlük Dersleri)", years: "2007–2013" },
   "Toplum ve Bilim": { description: "Akademik makaleler", years: "1981–1991" },

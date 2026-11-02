@@ -1,4 +1,5 @@
 import type { Article, ArticleSeries } from "@/lib/types";
+import { SERBESTIYET_ARCHIVE, SERBESTIYET_SERIES } from "@/data/serbestiyet-arsiv";
 
 /* ------------------------------------------------------------------
    MAKALELER
@@ -9,7 +10,7 @@ import type { Article, ArticleSeries } from "@/lib/types";
    readingTime: tam metin aktarılana kadar tahmini değerdir.
 ------------------------------------------------------------------- */
 
-export const ARTICLE_SERIES: ArticleSeries[] = [
+const CURATED_SERIES: ArticleSeries[] = [
   {
     id: "ulusal-kurtulus",
     title: "Ulusal Kurtuluş Savaşı mı, Milli Mücadele mi?",
@@ -36,7 +37,7 @@ export const ARTICLE_SERIES: ArticleSeries[] = [
 
 const S = "https://serbestiyet.com";
 
-export const ARTICLES: Article[] = [
+const CURATED: Article[] = [
   // ——— Dizi: Ulusal Kurtuluş Savaşı mı, Milli Mücadele mi? (Ağustos–Eylül 2026)
   {
     id: "a-248900",
@@ -673,3 +674,8 @@ export const ARTICLES: Article[] = [
     citation: "Özlem Kumrular (ed.), Dünyada Türk İmgesi, Kitap Yayınevi, 2005, ss. 179–204.",
   },
 ];
+
+/* Elle derlenmiş kayıtlar (son yazılar + akademik künyeler) ile otomatik üretilmiş
+   Serbestiyet arşivi (2014–2024) tek listede birleşir. */
+export const ARTICLE_SERIES: ArticleSeries[] = [...CURATED_SERIES, ...SERBESTIYET_SERIES];
+export const ARTICLES: Article[] = [...CURATED, ...SERBESTIYET_ARCHIVE];

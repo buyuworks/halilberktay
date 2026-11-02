@@ -1,15 +1,19 @@
 const MONTHS = ["Ocak", "Şubat", "Mart", "Nisan", "Mayıs", "Haziran", "Temmuz", "Ağustos", "Eylül", "Ekim", "Kasım", "Aralık"];
 const MONTHS_SHORT = ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"];
 
-export function formatDate(iso: string, precision: "day" | "year" = "day") {
+export type DatePrecision = "day" | "month" | "year";
+
+export function formatDate(iso: string, precision: DatePrecision = "day") {
   const [y, m, d] = iso.split("-").map(Number);
   if (precision === "year") return String(y);
+  if (precision === "month") return `${MONTHS[m - 1]} ${y}`;
   return `${d} ${MONTHS[m - 1]} ${y}`;
 }
 
-export function formatDateShort(iso: string, precision: "day" | "year" = "day") {
+export function formatDateShort(iso: string, precision: DatePrecision = "day") {
   const [y, m, d] = iso.split("-").map(Number);
   if (precision === "year") return String(y);
+  if (precision === "month") return `${MONTHS_SHORT[m - 1]} ${y}`;
   return `${String(d).padStart(2, "0")} ${MONTHS_SHORT[m - 1]} ${y}`;
 }
 

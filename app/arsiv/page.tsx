@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
-import { buildIndex } from "@/lib/content";
 import { ArchiveExplorer } from "@/components/ArchiveExplorer";
 
 export const metadata: Metadata = {
@@ -9,7 +8,6 @@ export const metadata: Metadata = {
 };
 
 export default function ArchivePage() {
-  const index = buildIndex();
   return (
     <>
       <header className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 pt-10 sm:pt-14 pb-4">
@@ -21,7 +19,7 @@ export default function ArchivePage() {
         </p>
       </header>
       <Suspense fallback={<div className="mx-auto max-w-page px-10 py-20 meta">Arşiv yükleniyor…</div>}>
-        <ArchiveExplorer entries={index} />
+        <ArchiveExplorer />
       </Suspense>
     </>
   );

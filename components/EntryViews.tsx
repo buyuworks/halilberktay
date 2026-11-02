@@ -30,7 +30,7 @@ export function TopicTag({ id, href = true, active = false }: { id: TopicId; hre
     active ? "bg-ink text-paper border-ink" : "border-rule text-ink-soft hover:border-ink-mute hover:text-ink",
   );
   return href ? (
-    <Link href={`/arsiv/?konu=${id}`} className={cls}>
+    <Link href={`/konular/${id}/`} className={cls}>
       {TOPICS[id].short ?? TOPICS[id].label}
     </Link>
   ) : (
@@ -43,7 +43,9 @@ export function ArchiveRow({ e, query = "" }: { e: ArchiveEntry; query?: string 
   const internal = e.type !== "Radar";
   const Title = (
     <span className="font-display text-[1.35rem] sm:text-[1.5rem] leading-[1.15] link-underline">
-      <Highlight text={e.title} query={query} />
+      <span lang={e.lang}>
+        <Highlight text={e.title} query={query} />
+      </span>
     </span>
   );
   return (
@@ -51,6 +53,11 @@ export function ArchiveRow({ e, query = "" }: { e: ArchiveEntry; query?: string 
       <div className="col-span-12 sm:col-span-3 flex sm:flex-col gap-x-3 gap-y-1.5 items-baseline sm:items-start">
         <TypeLabel type={e.type} kind={e.kind} />
         <span className="meta">{formatDateShort(e.date, e.datePrecision)}</span>
+        {e.lang === "en" && (
+          <span className="meta border border-rule rounded-sm px-1 leading-tight" title="İngilizce metin">
+            EN
+          </span>
+        )}
         <span className="meta hidden sm:block truncate max-w-full" title={e.source}>
           {e.source}
         </span>
@@ -59,7 +66,7 @@ export function ArchiveRow({ e, query = "" }: { e: ArchiveEntry; query?: string 
         {e.seriesLabel && e.type === "Makale" && (
           <p className="meta mb-1.5 !text-ink-soft">
             Dizi: {e.seriesLabel}
-            {e.part ? ` · ${e.part}. bölüm` : ""}
+            {e.part ? ` · ${e.partLabel ?? e.part}. bölüm` : ""}
           </p>
         )}
         {internal ? (

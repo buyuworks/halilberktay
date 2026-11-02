@@ -24,8 +24,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
+/** Dizi içinde tekrarlanan "Dizi adı (n)" önekini atar */
+const shortTitle = (a: Article) => {
+  if (!a.series) return a.title;
+  const t = a.title.replace(/^.*?\(\s*\d+[ab]?\s*\)\s*[:–-]?\s*/, "").replace(/^\d+[ab]?\s*[:–-]\s*/, "");
+  return t.length > 2 ? t : a.title;
+};
+const pl = (a: Article) => a.series?.label ?? String(a.series?.part ?? "");
+
 function citationFor(a: Article) {
-  const date = a.datePrecision === "year" ? a.publishedAt.slice(0, 4) : formatDate(a.publishedAt);
+  const date = formatDate(a.publishedAt, a.datePrecision);
   if (a.citation) return `Berktay, Halil. "${a.title}." ${a.citation}`;
   return `Berktay, Halil. "${a.title}." ${a.source}, ${date}.${a.externalUrl ? ` ${a.externalUrl}` : ""}`;
 }
@@ -84,9 +92,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         <div className="max-w-4xl mt-8">
           <p className="kicker text-accent">
             {a.kind}
-            {series ? ` · Dizi, ${a.series!.part}. bölüm` : ""}
+            {series ? ` · Dizi, ${pl(a)}. bölüm` : ""}
           </p>
-          <h1 className="font-display text-[2.4rem] sm:text-[3.6rem] lg:text-[4.2rem] leading-[1.03] tracking-[-0.02em] mt-4" style={{ textWrap: "balance" } as React.CSSProperties}>
+          <h1 lang={a.language} className="font-display text-[2.4rem] sm:text-[3.6rem] lg:text-[4.2rem] leading-[1.03] tracking-[-0.02em] mt-4" style={{ textWrap: "balance" } as React.CSSProperties}>
             {a.title}
           </h1>
           <p className="mt-6 font-display italic text-[1.35rem] sm:text-[1.6rem] leading-snug text-ink-soft max-w-3xl">{a.summary}</p>
@@ -98,6 +106,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             <span className="meta">{formatDate(a.publishedAt, a.datePrecision)}</span>
             <span className="meta">{a.readingTime} dk okuma{a.content ? "" : " (tahmini)"}</span>
             <span className="meta">{a.source}</span>
+            {a.language === "en" && <span className="meta">İngilizce</span>}
           </div>
           <ReaderControls />
         </div>
@@ -123,8 +132,8 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
                           s.id === a.id ? "text-accent" : "text-ink-mute hover:text-ink",
                         )}
                       >
-                        <span className="font-mono text-[0.7rem] pt-0.5 w-5 shrink-0">{s.series!.part}</span>
-                        <span>{s.title}</span>
+                        <span className="font-mono text-[0.7rem] pt-0.5 w-7 shrink-0">{pl(s)}</span>
+                        <span>{shortTitle(s)}</span>
                       </Link>
                     </li>
                   ))}
@@ -154,7 +163,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           ) : (
             <>
             <div className="prose-berktay">
-              <p className="dropcap">{a.summary}</p>
+              <p className={/^[\p{L}]/u.test(a.summary) ? "dropcap" : undefined}>{a.summary}</p>
             </div>
               <div className="mt-10 border border-rule bg-paper-raised p-6 sm:p-8 font-sans">
                 <p className="kicker text-ink-mute">Tam metin</p>
@@ -213,9 +222,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               {prev ? (
                 <Link href={`/yazilar/${prev.slug}/`} className="group bg-paper p-5 hover:bg-paper-raised">
                   <span className="meta inline-flex items-center gap-1">
-                    <ArrowLeft size={12} /> Önceki · {prev.series!.part}. bölüm
+                    <ArrowLeft size={12} /> Önceki · {pl(prev)}. bölüm
                   </span>
-                  <span className="block font-display text-lg mt-2 leading-snug link-underline">{prev.title}</span>
+                  <span className="block font-display text-lg mt-2 leading-snug link-underline">{shortTitle(prev)}</span>
                 </Link>
               ) : (
                 <span className="bg-paper" />
@@ -223,9 +232,9 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
               {next ? (
                 <Link href={`/yazilar/${next.slug}/`} className="group bg-paper p-5 hover:bg-paper-raised sm:text-right">
                   <span className="meta inline-flex items-center gap-1">
-                    Sonraki · {next.series!.part}. bölüm <ArrowRight size={12} />
+                    Sonraki · {pl(next)}. bölüm <ArrowRight size={12} />
                   </span>
-                  <span className="block font-display text-lg mt-2 leading-snug link-underline">{next.title}</span>
+                  <span className="block font-display text-lg mt-2 leading-snug link-underline">{shortTitle(next)}</span>
                 </Link>
               ) : (
                 <span className="bg-paper" />

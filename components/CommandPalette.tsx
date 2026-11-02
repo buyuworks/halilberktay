@@ -6,6 +6,7 @@ import { ArrowRight, BookOpen, CornerDownLeft, FileText, Headphones, CirclePlay,
 import type { ArchiveEntry } from "@/lib/content";
 import type { ContentType } from "@/lib/types";
 import { createSearcher } from "@/lib/search";
+import { useArchiveIndex } from "@/lib/useArchiveIndex";
 import { TOPICS } from "@/data/topics";
 import { Highlight } from "@/components/Highlight";
 import { cx, formatDateShort } from "@/lib/format";
@@ -24,7 +25,7 @@ type Row =
   | { kind: "entry"; e: ArchiveEntry }
   | { kind: "link"; label: string; hint: string; href: string; icon: typeof FileText };
 
-export function CommandPalette({ index }: { index: ArchiveEntry[] }) {
+export function CommandPalette() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const [q, setQ] = useState("");
@@ -32,7 +33,14 @@ export function CommandPalette({ index }: { index: ArchiveEntry[] }) {
   const [active, setActive] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
+  // Dizin ilk açılışta indirilir (tüm site için tek statik JSON)
+  const [wanted, setWanted] = useState(false);
+  const { entries, error } = useArchiveIndex(wanted);
+  const index = useMemo(() => entries ?? [], [entries]);
   const search = useMemo(() => createSearcher(index, (t) => TOPICS[t as keyof typeof TOPICS]?.label ?? t), [index]);
+  useEffect(() => {
+    if (open) setWanted(true);
+  }, [open]);
 
   // Kısayollar: ⌘K / Ctrl+K, "/" ve özel olay
   useEffect(() => {
@@ -70,10 +78,16 @@ export function CommandPalette({ index }: { index: ArchiveEntry[] }) {
     }
   }, [open]);
 
-  const results = useMemo(() => {
-    const r = q.trim() ? search(q) : [];
-    return (type === "Tümü" ? r : r.filter((e) => e.type === type)).slice(0, 40);
-  }, [q, type, search]);
+  const all = useMemo(() => (q.trim() ? search(q) : []), [q, search]);
+  const results = useMemo(
+    () => (type === "Tümü" ? all : all.filter((e) => e.type === type)).slice(0, 40),
+    [all, type],
+  );
+  const typeCounts = useMemo(() => {
+    const c: Record<string, number> = {};
+    for (const e of all) c[e.type] = (c[e.type] ?? 0) + 1;
+    return c;
+  }, [all]);
 
   const quick: Row[] = useMemo(
     () => [
@@ -83,7 +97,7 @@ export function CommandPalette({ index }: { index: ArchiveEntry[] }) {
       { kind: "link", label: "Bibliyografya", hint: "1983'ten bugüne kitaplar", href: "/kitaplar/", icon: BookOpen },
       { kind: "link", label: "Entelektüel Radar", hint: "Bugünlerde masamda", href: "/radar/", icon: Radar },
       ...(["feodalizm-atut", "erken-cumhuriyet", "solun-tarihi", "devrimler"] as const).map(
-        (t): Row => ({ kind: "link", label: TOPICS[t].label, hint: "Konu", href: `/arsiv/?konu=${t}`, icon: Hash }),
+        (t): Row => ({ kind: "link", label: TOPICS[t].label, hint: "Konu sayfası", href: `/konular/${t}/`, icon: Hash }),
       ),
     ],
     [],
@@ -172,7 +186,7 @@ export function CommandPalette({ index }: { index: ArchiveEntry[] }) {
             >
               {f}
               {q.trim() && f !== "Tümü" && (
-                <span className="ml-1 opacity-60">{search(q).filter((e) => e.type === f).length}</span>
+                <span className="ml-1 opacity-60">{typeCounts[f] ?? 0}</span>
               )}
             </button>
           ))}
@@ -180,7 +194,12 @@ export function CommandPalette({ index }: { index: ArchiveEntry[] }) {
 
         <div ref={listRef} id="hb-search-results" role="listbox" className="overflow-y-auto overscroll-contain py-2">
           {!q.trim() && <p className="kicker text-ink-mute px-5 pt-2 pb-1">Hızlı erişim</p>}
-          {q.trim() && rows.length === 0 && (
+          {q.trim() && !entries && (
+            <p className="px-5 py-10 text-center text-sm text-ink-mute" role="status">
+              {error ? "Arama dizini yüklenemedi. Bağlantınızı kontrol edip yeniden deneyin." : "Arşiv dizini yükleniyor…"}
+            </p>
+          )}
+          {q.trim() && entries && rows.length === 0 && (
             <div className="px-5 py-10 text-center">
               <p className="font-display text-xl">&ldquo;{q}&rdquo; için sonuç bulunamadı.</p>
               <p className="text-sm text-ink-mute mt-2">Daha kısa bir ifade deneyin ya da filtreyi &ldquo;Tümü&rdquo;ye alın.</p>
@@ -236,7 +255,7 @@ export function CommandPalette({ index }: { index: ArchiveEntry[] }) {
                     </span>
                     <span className="meta block mt-1">
                       {e.source}
-                      {e.part ? ` · Bölüm ${e.part}` : ""} · {formatDateShort(e.date, e.datePrecision)}
+                      {e.part ? ` · Bölüm ${e.partLabel ?? e.part}` : ""} · {formatDateShort(e.date, e.datePrecision)}
                     </span>
                   </span>
                   {isActive && <CornerDownLeft size={14} className="text-ink-mute mt-1.5 shrink-0" />}
@@ -263,7 +282,7 @@ export function CommandPalette({ index }: { index: ArchiveEntry[] }) {
               Tüm sonuçları filtrelerle aç <ArrowRight size={13} />
             </button>
           ) : (
-            <span>{index.length} kayıt aranabilir</span>
+            <span>{entries ? `${index.length} kayıt aranabilir` : "Dizin yükleniyor…"}</span>
           )}
         </div>
       </div>
