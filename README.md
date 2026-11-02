@@ -45,21 +45,39 @@ npm run build    # statik çıktı: out/ (her statik barındırmada çalışır:
 
 | Veri | Durum | Kaynak |
 |---|---|---|
-| 30 Serbestiyet yazısı (başlık, tarih, bağlantı) | ✅ doğrulandı | serbestiyet.com yazar sayfası |
+| 864 Serbestiyet köşe yazısı, 2014–2026 (başlık, tarih, bağlantı, kısa özet) | ✅ yazar arşivinin 29 sayfasının tamamı | serbestiyet.com yazar sayfası (`data/raw/`) |
+| 60+ yazı dizisi, bölüm sıraları | ✅ başlıklardan çıkarıldı; bazı bölümler sitede yok (aşağıda) | `scripts/build-serbestiyet.mjs` |
+| Konu etiketleri | ⚠️ anahtar kelimeyle otomatik; editör kontrolü gerekli | `TOPIC_RULES` |
+| Taraf yazıları (2007–2013) | ⏳ dizinlenmedi | — |
 | 15 akademik makale / kitap bölümü künyesi | ✅ doğrulandı | İbn Haldun Üniv. özgeçmişi |
 | 13 kitap | ✅ doğrulandı (2010 sonrası eksik olabilir) | Özgeçmiş + Wikipedia |
-| Biyografi zaman çizelgesi | ✅ doğrulandı; "Serbestiyet başlangıç yılı" doğrulanacak | Özgeçmiş + Wikipedia |
+| Biyografi zaman çizelgesi | ✅ doğrulandı; Serbestiyet başlangıcı 2014 (arşivdeki en eski yazı 1 Ocak 2014) | Özgeçmiş + Wikipedia |
 | 10 video/ses kaydının başlık, tarih, program adı | ✅ doğrulandı | serbestiyet.com |
 | YouTube kimlikleri | ⏳ eklenecek (alanı doldurmak yeterli) | — |
 | Yazıların tam metinleri | ⏳ aktarılacak | — |
 | Radar notları | ⚠️ **örnek**: eserler gerçek, yorumlar Berktay'ın değil | — |
 | "Bir Dönem Kapanırken" özeti | ⚠️ taslak, doğrulanacak | — |
+| 5 yazının yalnızca ay bilgisi var | ⚠️ "Ara 2018" gibi gösteriliyor | site taşıma tarihi (2020-05-28) güvenilmez |
+
+**Sitede bulunamayan dizi bölümleri:** Solun Kültür Serüveni yazı dizisinin 1–3. bölümleri, Kuvayı milliyeler (2), YAE (1), Putin ve Prigozhin (1).
+
+### Serbestiyet verisini yeniden üretmek
+
+```bash
+# data/raw/*.psv dosyalarına yeni satır ekleyin: tarih | başlık | url | özet
+node scripts/build-serbestiyet.mjs   # → data/serbestiyet-arsiv.ts
+npm run build
+```
+Betik yazı kimliğine göre tekrarları ayıklar, dizileri (`SERIES` kuralları) ve İngilizce çevirileri ("EN 1, EN 2…") tanır, konu etiketlerini atar. Elle düzenlenen yazılar `data/articles.ts` içindedir ve üretilen dosyada atlanır.
 
 ## Dosya yapısı
 
 ```
-app/            sayfalar (/, /arsiv, /yazilar/[slug], /kitaplar/[slug], /videolar/[slug], /radar, /biyografi, /hakkinda)
+app/            sayfalar (/, /arsiv, /yazilar, /yazilar/[slug], /yazilar/yil/[yil], /konular/[konu], /kitaplar/[slug], /videolar/[slug], /radar, /biyografi, /hakkinda)
+                /arama-dizini.json: ⌘K ve arşiv için ayrı arama dizini (≈90 KB gzip, ilk açılışta yüklenir)
 components/     CommandPalette (⌘K), ArchiveExplorer, ReaderTools, BookCover, VideoFrame, CinemaModal, Timeline…
-data/           articles, books, videos, radar, timeline, topics
+data/           articles (elle), serbestiyet-arsiv (üretilen), books, videos, radar, timeline, topics
+data/raw/       Serbestiyet yazar arşivinden çekilen ham satırlar
+scripts/        build-serbestiyet.mjs, parse-raw.mjs
 lib/            types (şema), content (birleşik indeks), search, format
 ```
