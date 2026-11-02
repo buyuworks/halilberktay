@@ -46,7 +46,7 @@ NEXT_PUBLIC_SITE_URL=https://alan-adi.tld npm run build    # statik çıktı: ou
 
 | Veri | Durum | Kaynak |
 |---|---|---|
-| 864 Serbestiyet köşe yazısı, 2014–2026 (başlık, tarih, bağlantı, kısa özet) | ✅ yazar arşivinin 29 sayfasının tamamı | serbestiyet.com yazar sayfası (`data/raw/`) |
+| 864 Serbestiyet köşe yazısı, 2014–2026 (başlık, tarih, bağlantı) | ✅ yazar arşivinin 29 sayfasının tamamı | serbestiyet.com yazar sayfası (`data/raw/`) |
 | 60+ yazı dizisi, bölüm sıraları | ✅ başlıklardan çıkarıldı; bazı bölümler sitede yok (aşağıda) | `scripts/build-serbestiyet.mjs` |
 | Konu etiketleri | ⚠️ anahtar kelimeyle otomatik; editör kontrolü gerekli | `TOPIC_RULES` |
 | Taraf yazıları (2007–2013) | ⏳ dizinlenmedi | — |
@@ -54,9 +54,10 @@ NEXT_PUBLIC_SITE_URL=https://alan-adi.tld npm run build    # statik çıktı: ou
 | 13 kitap | ✅ doğrulandı (2010 sonrası eksik olabilir) | Özgeçmiş + Wikipedia |
 | Biyografi zaman çizelgesi | ✅ doğrulandı; Serbestiyet başlangıcı 2014 (arşivdeki en eski yazı 1 Ocak 2014) | Özgeçmiş + Wikipedia |
 | 10 video/ses kaydının başlık, tarih, program adı | ✅ doğrulandı | serbestiyet.com |
+| Yazı özetleri ve dizi açıklamaları | ❌ bilerek yok: içerik hakkında editoryal yorum yazılmaz | — |
 | YouTube kimlikleri | ⏳ eklenecek (alanı doldurmak yeterli) | — |
 | Yazıların tam metinleri | ⏳ aktarılacak | — |
-| Radar notları | ⚠️ **örnek**: eserler gerçek, yorumlar Berktay'ın değil | — |
+| Radar notları | ⏳ eserler gerçek; yorum alanları Berktay'ın notları için boş | — |
 | "Bir Dönem Kapanırken" özeti | ⚠️ taslak, doğrulanacak | — |
 | 5 yazının yalnızca ay bilgisi var | ⚠️ "Ara 2018" gibi gösteriliyor | site taşıma tarihi (2020-05-28) güvenilmez |
 
