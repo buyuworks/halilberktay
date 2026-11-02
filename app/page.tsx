@@ -71,7 +71,7 @@ export default function HomePage() {
               sizes="(min-width: 1440px) 1360px, 100vw"
               alt="Halil Berktay'ın mürekkep çizimi portresi"
               width={2000}
-              height={1085}
+              height={1116}
               fetchPriority="high"
               className="block w-full h-[19rem] sm:h-[26rem] lg:h-auto object-cover object-right"
             />
