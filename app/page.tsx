@@ -40,50 +40,66 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ——— HERO ——— */}
-      <section className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 pt-10 sm:pt-16 pb-14">
-        <div className="flex items-center justify-between meta border-b border-rule pb-3">
-          <span>{formatDate(today.toISOString().slice(0, 10))} · Pazartesi</span>
-          <span className="hidden sm:inline">Tarih · Arşiv · Defter</span>
+      {/* ——— HERO: portre bandı (koyu tema belirteçleriyle) ——— */}
+      <section className="dark relative overflow-hidden bg-[#1d1c18] text-ink" aria-labelledby="hero-baslik">
+        {/* Portre: masaüstünde sağa yaslı arka plan, mobilde üstte */}
+        <div className="relative lg:absolute lg:inset-y-0 lg:right-0 lg:w-[62%] xl:w-[58%]" aria-hidden>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/gorseller/portre-cizim.webp"
+            alt=""
+            width={1600}
+            height={893}
+            fetchPriority="high"
+            className="block w-full h-[21rem] sm:h-[26rem] lg:h-full object-cover object-[88%_30%] lg:object-right"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#1d1c18] via-transparent to-transparent lg:bg-gradient-to-r lg:from-[#1d1c18] lg:via-[#1d1c18]/10 lg:to-transparent" />
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-10 lg:gap-14 pt-10 sm:pt-14">
-          <div className="lg:col-span-8 animate-fade-up">
+        <div className="relative mx-auto max-w-page px-4 sm:px-6 lg:px-10 pb-12 sm:pb-16 lg:py-20 xl:py-24 -mt-6 lg:mt-0">
+          <div className="hidden lg:flex items-center gap-6 meta mb-12">
+            <span>{formatDate(today.toISOString().slice(0, 10))} · Pazartesi</span>
+            <span className="h-px w-16 bg-rule" />
+            <span>Tarih · Arşiv · Defter</span>
+          </div>
+          <div className="max-w-[40rem] animate-fade-up">
             <p className="kicker text-ink-mute">Tarihçi · İbn Haldun Üniversitesi Tarih Bölümü</p>
-            <h1 className="font-display text-display tracking-[-0.025em] mt-4 font-[450]">
+            <h1 id="hero-baslik" className="font-display text-display tracking-[-0.025em] mt-4 font-[450]">
               Halil Berktay
             </h1>
-            <p className="mt-6 max-w-2xl font-display italic text-[1.45rem] sm:text-[1.65rem] leading-snug text-ink-soft">
+            <p className="mt-6 font-display italic text-[1.4rem] sm:text-[1.6rem] leading-snug text-ink-soft">
               Kabileden feodalizme, Köprülü&apos;den Taraf&apos;a, Fransız Devrimi&apos;nden bugünün Türkiyesine: yarım asrı aşan
               bir düşünce emeğinin arşivi.
             </p>
-            <div className="mt-10 max-w-2xl">
+            <div className="mt-10">
               <HeroSearch />
             </div>
+            <p className="meta !text-[0.65rem] mt-10 inline-block border border-dashed border-ink-mute/50 px-2 py-0.5 rounded">
+              Taslak portre · yapay zekâ ile üretildi, onay bekliyor
+            </p>
           </div>
-
-          {/* Katalog fişi */}
-          <aside className="lg:col-span-4 lg:border-l lg:border-rule lg:pl-10 animate-fade-up [animation-delay:120ms]">
-            <p className="kicker text-ink-mute">Külliyat</p>
-            <dl className="mt-4 divide-y divide-rule border-y border-rule">
-              {[
-                ["Kitaplar", `${STATS.books}`, "1983 – 2018"],
-                ["Köşe yazıları", `${STATS.columns}`, "Serbestiyet 2014– · Taraf aktarılacak"],
-                ["Akademik metinler", `${STATS.academic}`, "1981 – 2005"],
-                ["Video & ses", "100+", "saat · Serbestiyet TV · TV · Podcast"],
-              ].map(([k, v, s]) => (
-                <div key={k} className="py-3.5 flex items-baseline justify-between gap-4">
-                  <dt>
-                    <span className="block">{k}</span>
-                    <span className="meta">{s}</span>
-                  </dt>
-                  <dd className="font-display text-3xl tabular-nums">{v}</dd>
-                </div>
-              ))}
-            </dl>
-            <p className="meta mt-3">Dizinde {index.length} kayıt · yazıların tam metinleri aktarılıyor.</p>
-          </aside>
         </div>
+      </section>
+
+      {/* ——— KÜLLİYAT ŞERİDİ ——— */}
+      <section className="mx-auto max-w-page px-4 sm:px-6 lg:px-10 pt-10 pb-14" aria-label="Külliyat">
+        <dl className="grid grid-cols-2 lg:grid-cols-4 border-y border-rule divide-x divide-rule">
+          {[
+            ["Kitaplar", `${STATS.books}`, "1983 – 2018"],
+            ["Köşe yazıları", `${STATS.columns}`, "Serbestiyet 2014– · Taraf aktarılacak"],
+            ["Akademik metinler", `${STATS.academic}`, "1981 – 2005"],
+            ["Video & ses", "100+", "saat · TV · podcast"],
+          ].map(([k, v, s], i) => (
+            <div key={k} className={`py-5 px-4 sm:px-6 first:pl-0 ${i === 2 ? "max-lg:pl-0 max-lg:border-l-0" : ""} ${i > 1 ? "max-lg:border-t max-lg:border-rule" : ""}`}>
+              <dd className="font-display text-4xl tabular-nums">{v}</dd>
+              <dt className="mt-1">
+                <span className="block">{k}</span>
+                <span className="meta">{s}</span>
+              </dt>
+            </div>
+          ))}
+        </dl>
+        <p className="meta mt-3">Dizinde {index.length} kayıt · yazıların tam metinleri aktarılıyor.</p>
       </section>
 
       {/* ——— ÖNE ÇIKAN DİZİ + RADAR ——— */}
