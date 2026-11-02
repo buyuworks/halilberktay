@@ -19,7 +19,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!a) return {};
   return {
     title: a.title,
-    description: a.summary,
+    description: a.summary || `${a.title}. Halil Berktay, ${a.source}, ${formatDate(a.publishedAt, a.datePrecision)}.`,
     openGraph: { type: "article", publishedTime: a.publishedAt, authors: ["Halil Berktay"] },
   };
 }
@@ -52,7 +52,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
     "@context": "https://schema.org",
     "@type": a.kind === "Köşe Yazısı" ? "OpinionNewsArticle" : "ScholarlyArticle",
     headline: a.title,
-    abstract: a.summary,
+    abstract: a.summary || undefined,
     datePublished: a.publishedAt,
     author: { "@type": "Person", name: "Halil Berktay" },
     publisher: { "@type": "Organization", name: a.source },
@@ -91,7 +91,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <h1 lang={a.language} className="font-display text-[2.4rem] sm:text-[3.6rem] lg:text-[4.2rem] leading-[1.03] tracking-[-0.02em] mt-4" style={{ textWrap: "balance" } as React.CSSProperties}>
             {a.title}
           </h1>
-          <p className="mt-6 font-display italic text-[1.35rem] sm:text-[1.6rem] leading-snug text-ink-soft max-w-3xl">{a.summary}</p>
+          {a.summary && <p className="mt-6 font-display italic text-[1.35rem] sm:text-[1.6rem] leading-snug text-ink-soft max-w-3xl">{a.summary}</p>}
         </div>
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4 py-3 border-y border-rule">
@@ -156,10 +156,12 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
             </div>
           ) : (
             <>
-            <div className="prose-berktay">
-              <p className={/^[\p{L}]/u.test(a.summary) ? "dropcap" : undefined}>{a.summary}</p>
-            </div>
-              <div className="mt-10 border border-rule bg-paper-raised p-6 sm:p-8 font-sans">
+            {a.summary && (
+              <div className="prose-berktay mb-10">
+                <p className={/^[\p{L}]/u.test(a.summary) ? "dropcap" : undefined}>{a.summary}</p>
+              </div>
+            )}
+              <div className="border border-rule bg-paper-raised p-6 sm:p-8 font-sans">
                 <p className="kicker text-ink-mute">Tam metin</p>
                 <p className="font-display text-2xl mt-2 leading-snug">
                   {a.externalUrl

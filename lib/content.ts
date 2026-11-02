@@ -107,7 +107,7 @@ export function buildIndex(): ArchiveEntry[] {
     source: x.author ? `${x.author} · ${x.itemSource}` : x.itemSource,
     tags: x.tags ?? [],
     kind: x.category,
-    sample: x.placeholder || undefined,
+    sample: (x.placeholder && !!x.berktayComment) || undefined,
   }));
   return [...a, ...v, ...b, ...r].sort((p, q) => q.date.localeCompare(p.date));
 }

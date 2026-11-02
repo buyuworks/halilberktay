@@ -19,7 +19,7 @@ export function RadarFeed({ items, variant = "column" }: { items: RadarItem[]; v
           <div className={cx("flex items-center gap-2", variant === "page" && "sm:col-span-3 sm:flex-col sm:items-start sm:gap-1.5")}>
             <span className="kicker text-accent">{r.category}</span>
             <span className="meta">{formatDateShort(r.date)}</span>
-            {r.placeholder && (
+            {r.placeholder && r.berktayComment && (
               <span
                 className="meta !text-[0.62rem] uppercase tracking-wider border border-dashed border-ink-mute/60 px-1.5 rounded"
                 title="Bu not tasarım için yazılmış yer tutucudur; Halil Berktay'a ait değildir."
@@ -39,14 +39,18 @@ export function RadarFeed({ items, variant = "column" }: { items: RadarItem[]; v
               <ArrowUpRight size={15} className="inline ml-1 -mt-1 text-ink-mute group-hover:text-accent transition-colors" />
             </a>
             <p className="meta mt-1">{r.author ? `${r.author} · ${r.itemSource}` : r.itemSource}</p>
-            <blockquote
-              className={cx(
-                "mt-3 font-serif italic text-ink-soft leading-relaxed border-l border-accent/60 pl-3",
-                variant === "page" ? "text-lg max-w-measure" : "text-[0.98rem]",
-              )}
-            >
-              {r.berktayComment}
-            </blockquote>
+            {r.berktayComment ? (
+              <blockquote
+                className={cx(
+                  "mt-3 font-serif italic text-ink-soft leading-relaxed border-l border-accent/60 pl-3",
+                  variant === "page" ? "text-lg max-w-measure" : "text-[0.98rem]",
+                )}
+              >
+                {r.berktayComment}
+              </blockquote>
+            ) : (
+              <p className="mt-3 meta border-l border-dashed border-rule pl-3">Halil Berktay&apos;ın notu eklenecek.</p>
+            )}
           </div>
           {variant === "column" && i === 0 && <span className="sr-only">En yeni kayıt</span>}
         </li>

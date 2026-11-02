@@ -45,7 +45,7 @@ export default function SeriesIndexPage() {
                       <span className="meta">bölüm · {parts[0].source}</span>
                     </span>
                     <span className="font-display text-xl leading-tight mt-3 link-underline">{s.title}</span>
-                    <span className="font-serif text-ink-soft text-[0.95rem] mt-2 leading-relaxed line-clamp-3">{s.description}</span>
+                    {s.description && <span className="font-serif text-ink-soft text-[0.95rem] mt-2 leading-relaxed line-clamp-3">{s.description}</span>}
                   </Link>
                 </li>
               ))}

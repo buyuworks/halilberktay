@@ -250,10 +250,12 @@ export function CommandPalette() {
                     <span className="block font-display text-[1.08rem] leading-snug">
                       <Highlight text={e.title} query={q} />
                     </span>
-                    <span className="block text-sm text-ink-soft line-clamp-1 mt-0.5">
-                      {e.sample && <span className="text-accent">[örnek not] </span>}
-                      <Highlight text={e.summary} query={q} />
-                    </span>
+                    {e.summary && (
+                      <span className="block text-sm text-ink-soft line-clamp-1 mt-0.5">
+                        {e.sample && <span className="text-accent">[örnek not] </span>}
+                        <Highlight text={e.summary} query={q} />
+                      </span>
+                    )}
                     <span className="meta block mt-1">
                       {e.source}
                       {e.part ? ` · Bölüm ${e.partLabel ?? e.part}` : ""} · {formatDateShort(e.date, e.datePrecision)}

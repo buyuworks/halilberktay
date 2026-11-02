@@ -97,7 +97,7 @@ export default function HomePage() {
                   <span className="link-underline">{series.title}</span>
                 </h2>
               </Link>
-              <p className="mt-5 font-serif text-lg sm:text-xl text-ink-soft leading-relaxed max-w-2xl">{series.description}</p>
+              {series.description && <p className="mt-5 font-serif text-lg sm:text-xl text-ink-soft leading-relaxed max-w-2xl">{series.description}</p>}
               <p className="mt-4 meta">
                 Son bölüm: {latest.series!.part}. {latest.title} · {formatDate(latest.publishedAt)}
               </p>

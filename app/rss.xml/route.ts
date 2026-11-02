@@ -13,7 +13,7 @@ export function GET() {
     .map((a) => {
       const link = `${SITE_URL}/yazilar/${a.slug}/`;
       const d = new Date(a.publishedAt.length === 7 ? `${a.publishedAt}-01` : a.publishedAt);
-      return `<item><title>${esc(a.title)}</title><link>${link}</link><guid>${link}</guid><pubDate>${d.toUTCString()}</pubDate><description>${esc(a.summary ?? "")}</description><category>${esc(a.source)}</category></item>`;
+      return `<item><title>${esc(a.title)}</title><link>${link}</link><guid>${link}</guid><pubDate>${d.toUTCString()}</pubDate>${a.summary ? `<description>${esc(a.summary)}</description>` : ""}<category>${esc(a.source)}</category></item>`;
     })
     .join("");
   const xml = `<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"><channel><title>Halil Berktay · Yazılar</title><link>${SITE_URL}/</link><description>Halil Berktay'ın köşe yazıları ve makaleleri</description><language>tr</language>${items}</channel></rss>`;

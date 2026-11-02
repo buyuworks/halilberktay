@@ -36,8 +36,8 @@ export default function RadarPage() {
             ))}
           </ul>
           <p className="meta mt-4 border border-dashed border-rule p-3 leading-relaxed">
-            Prototip notu: Eserler gerçektir; yorum metinleri tasarım için yazılmış örneklerdir ve Halil Berktay&apos;a ait
-            değildir. Canlıda bu akış, telefondan bir bağlantı ve iki cümleyle güncellenebilen kısa bir formla beslenecek.
+            Prototip notu: Eserler gerçektir; yorum alanları Halil Berktay&apos;ın kendi notları için boş bırakıldı.
+            Canlıda bu akış, telefondan bir bağlantı ve iki cümleyle güncellenebilen kısa bir formla beslenecek.
           </p>
         </div>
       </header>

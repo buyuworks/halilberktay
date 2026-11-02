@@ -89,13 +89,13 @@ const TOPIC_RULES = [
   ["osmanli-iktisat", /timar|fiyef|koylu toplum|vergi|rant/],
   ["feodalizm-atut", /feodal|asya uretim|aut\b|fut\b/],
   ["erken-cumhuriyet", /ataturk|mustafa kemal|kemalis|tek parti|1920|cumhuriyet|inonu|recep peker|milli mucadele|kuvayi|canakkale|menderes|yassiada|1946|dp’nin|tcf/],
-  ["solun-tarihi", /marks|komunis|stalin|lenin|bolsevik|mao|sosyalis|solcu|\bsol\b|solun|nazim|troçki|trocki|buharin|komintern|devrimci|guevara|perincek/],
+  ["solun-tarihi", /marks|komunis|stalin|lenin|bolsevik|mao|sosyalis|solcu|\bsol\b|solun|nazim|troçki|trocki|buharin|komintern|devrimci|guevara|perincek|12 mart|1965-71/],
   ["devrimler", /devrim|fransiz|napolyon|robespierre|1789|1848|1968|68’|ihtilal/],
-  ["milliyetcilik", /milliyetci|nasyonal|ulusalci|irkci|irkcilik|siyonizm|anti-semit|ulus /],
+  ["milliyetcilik", /milliyetci|fasizm|fasist|\bnazi(?![mk])|hitler|weimar|nasyonal|ulusalci|irkci|irkcilik|siyonizm|anti-semit|ulus /],
   ["somurgecilik", /somurge|emperyali|imparatorluk|yerli|apartheid|kolomb|lakota|dakota|afrika/],
   ["kurt-meselesi", /kurt|pkk|hdp|demirtas|ocalan|imrali|rojava|bakur|hendek|kobani|tahir elci|suruc|barzani/],
-  ["kultur", /sanat|edebiyat|siir|roman|film|brecht|kipling|mayakovsk|nazim|yasar kemal|ahmet arif|ahmed arif|botticelli|borges|muzik|futbol|spor|spiker/],
-  ["tarih-yazimi", /tarihci|tarih yaz|tarihsel|anakroni|olgu ve yorum|historiy|paradigma|kuhn|tarih ve siyaset|tarihe bir not/],
+  ["kultur", /sanat|edebiyat|siir|roman|film|brecht|kipling|mayakovsk|nazim|yasar kemal|ahmet arif|ahmed arif|botticelli|borges|muzik|futbol|spor|spiker|sostakovic|plisetskaya|bale\b|ionesco|pir sultan|yidis|opera\b|operas\b|tiyatro/],
+  ["tarih-yazimi", /tarihci|tarih yaz|tarihsel|anakroni|olgu ve yorum|historiy|paradigma|kuhn|tarih ve siyaset|tarihe bir not|sahte bilim|turk tarih tezi|ttt'|medeniyet|yontem/],
   ["dunya-siyaseti", /trump|biden|abd|amerika|putin|rusya|cin\b|cin’|cin ve|iran|israil|netanyahu|hamas|gazze|avrupa|brexit|ingiltere|almanya|fransa|macaristan|orban|venezuela|myanmar|bolsonaro|brezilya|ukrayna|suud|hindistan|kolombiya|vietnam|irak|suriye|isid|isid|bbc|fox news/],
   ["ortacag", /ortacag|kilise|cadi|iskender|ilkcag|helenistik|pirus|antik/],
   ["guncel-siyaset", /erdogan|akp|ak parti|chp|kilicdaroglu|davutoglu|imamoglu|secim|referandum|baskanlik|15 temmuz|darbe|yargi|hsyk|ysk|aym|kavala|gezi|ohal|salgin|korona|covid|soylu|gul\b|babacan|bildiri|medya|kutuplasma/],
@@ -156,7 +156,7 @@ for (const r of rows) {
     id: `a-${r.pid}`,
     slug,
     title: r.title,
-    summary: r.summary,
+    summary: "", // özetler yalnız konu etiketlemede kullanılır, sitede gösterilmez
     publishedAt: date,
     ...(precision === "month" ? { datePrecision: "month" } : {}),
     source: "Serbestiyet",
@@ -193,14 +193,14 @@ for (const s of SERIES) {
     const label = m.label ?? String(i + 1);
     m.a.series = { id: s.id, part: i + 1, ...(label !== String(i + 1) ? { label } : {}) };
   });
-  seriesOut.push({ id: s.id, title: s.title, description: s.desc });
+  seriesOut.push({ id: s.id, title: s.title, description: "" });
 }
 
 const header = `/* ------------------------------------------------------------------
    SERBESTİYET ARŞİVİ (otomatik üretildi: scripts/build-serbestiyet.mjs)
    Kaynak: serbestiyet.com yazar sayfası, ${rows.length} yazı (2014–2024).
-   Başlık, tarih ve bağlantılar kaynaktaki gibidir. Özetler kısa editoryal
-   notlardır; konu etiketleri anahtar kelimeyle atanmıştır, gözden geçirilmeli.
+   Başlık, tarih ve bağlantılar kaynaktaki gibidir. Sitede yazı özeti gösterilmez (ham özetler
+   yalnızca konu etiketlemede kullanılır); konu etiketleri anahtar kelimeyle atanmıştır, gözden geçirilmeli.
    Bu dosyayı elle düzenlemeyin; ham veriyi (data/raw) değiştirip yeniden üretin.
 ------------------------------------------------------------------- */
 import type { Article, ArticleSeries } from "@/lib/types";

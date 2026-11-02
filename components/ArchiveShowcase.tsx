@@ -167,9 +167,11 @@ function ShowcaseCell({ e, big, onVideo }: { e: ArchiveEntry; big: boolean; onVi
       <h3 className={cx("mt-2 font-display leading-[1.12]", big ? "text-3xl sm:text-[2.4rem]" : "text-[1.4rem]")}>
         <span className="link-underline">{e.title}</span>
       </h3>
-      <p className={cx("mt-3 font-serif text-ink-soft leading-relaxed", big ? "text-lg line-clamp-4 max-w-2xl" : "line-clamp-3")}>
-        {e.summary}
-      </p>
+      {e.summary && (
+        <p className={cx("mt-3 font-serif text-ink-soft leading-relaxed", big ? "text-lg line-clamp-4 max-w-2xl" : "line-clamp-3")}>
+          {e.summary}
+        </p>
+      )}
       <p className="meta mt-auto pt-4">
         {formatDateShort(e.date, e.datePrecision)}
         {e.readingTime ? ` · ${e.readingTime} dk` : ""}

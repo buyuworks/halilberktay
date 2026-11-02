@@ -14,7 +14,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ dizi: string }> }): Promise<Metadata> {
   const { dizi } = await params;
   const x = allSeries().find((y) => y.s.id === dizi);
-  return x ? { title: `${x.s.title} (yazı dizisi)`, description: x.s.description } : {};
+  return x ? { title: `${x.s.title} (yazı dizisi)`, description: x.s.description || `Halil Berktay'ın ${x.parts.length} bölümlük yazı dizisi.` } : {};
 }
 
 export default async function SeriesPage({ params }: { params: Promise<{ dizi: string }> }) {
@@ -44,7 +44,7 @@ export default async function SeriesPage({ params }: { params: Promise<{ dizi: s
         <div className="lg:col-span-8 min-w-0">
           <p className="kicker text-accent">Yazı dizisi · {sources.join(", ")}</p>
           <h1 className="font-display text-display tracking-[-0.02em] mt-2">{s.title}</h1>
-          <p className="mt-4 font-serif text-xl text-ink-soft leading-relaxed max-w-2xl">{s.description}</p>
+          {s.description && <p className="mt-4 font-serif text-xl text-ink-soft leading-relaxed max-w-2xl">{s.description}</p>}
           {tags.length > 0 && (
             <div className="mt-5 flex flex-wrap gap-2">
               {tags.map((t) => <TopicTag key={t} id={t} />)}

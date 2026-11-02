@@ -83,9 +83,11 @@ export function ArchiveRow({ e, query = "" }: { e: ArchiveEntry; query?: string 
             {Title} <ArrowUpRight size={16} className="inline text-ink-mute" />
           </a>
         )}
-        <p className="mt-2 font-serif text-ink-soft leading-relaxed line-clamp-2">
-          <Highlight text={e.summary} query={query} />
-        </p>
+        {e.summary && (
+          <p className="mt-2 font-serif text-ink-soft leading-relaxed line-clamp-2">
+            <Highlight text={e.summary} query={query} />
+          </p>
+        )}
         <div className="mt-3 flex flex-wrap items-center gap-1.5">
           {e.tags.slice(0, 4).map((t) => (
             <TopicTag key={t} id={t} />
