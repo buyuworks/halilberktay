@@ -55,10 +55,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       suppressHydrationWarning
       className={`${newsreader.variable} ${sourceSerif.variable} ${inter.variable} ${plexMono.variable}`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
-      </head>
       <body className="min-h-dvh flex flex-col">
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
         <a href="#icerik" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[100] bg-ink text-paper px-3 py-2 text-sm">
           İçeriğe geç
         </a>
