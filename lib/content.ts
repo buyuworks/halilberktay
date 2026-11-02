@@ -7,7 +7,7 @@ import type { Article, Book, ContentType, RadarItem, TopicId, Video } from "@/li
 
 /* ------------------------------------------------------------------
    BİRLEŞİK İNDEKS
-   Makale, video, ses, kitap ve radar kayıtlarını aynı arama/filtre
+   Makale, video, ses, kitap ve kenar notlarını aynı arama/filtre
    motorunda kullanmak için ortak bir "ArchiveEntry" biçimine çevirir.
    Statik derlemede bir kez üretilir; istemciye JSON olarak iner (~birkaç KB).
    1000+ yazıda: Pagefind veya Typesense/Meilisearch'e geçilir.
@@ -31,7 +31,7 @@ export interface ArchiveEntry {
   /** Görüntülenecek bölüm etiketi (ör. "14b") */
   partLabel?: string;
   lang?: "en";
-  /** Yorum metni örnektir (Radar prototip notları) */
+  /** Yorum metni örnektir (Kenar notları prototipi) */
   sample?: boolean;
   youtubeId?: string | null;
   kind?: string;
@@ -97,10 +97,10 @@ export function buildIndex(): ArchiveEntry[] {
   }));
   const r: ArchiveEntry[] = RADAR.map((x: RadarItem) => ({
     id: x.id,
-    type: "Radar",
+    type: "Kenar Notu",
     title: x.itemTitle,
     summary: x.berktayComment,
-    href: `/radar/#${x.id}`,
+    href: `/kenar-notlari/#${x.id}`,
     external: x.externalUrl,
     date: x.date,
     year: +x.date.slice(0, 4),

@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ArrowRight, BookOpen, CornerDownLeft, FileText, Headphones, CirclePlay, Radar, Search, Hash } from "lucide-react";
+import { ArrowRight, BookOpen, CornerDownLeft, FileText, Headphones, CirclePlay, PenLine, Search, Hash } from "lucide-react";
 import type { ArchiveEntry } from "@/lib/content";
 import type { ContentType } from "@/lib/types";
 import { createSearcher } from "@/lib/search";
@@ -16,10 +16,10 @@ export const TYPE_ICON: Record<ContentType, typeof FileText> = {
   Video: CirclePlay,
   "Ses Kaydı": Headphones,
   Kitap: BookOpen,
-  Radar: Radar,
+  "Kenar Notu": PenLine,
 };
 
-const FILTERS: ("Tümü" | ContentType)[] = ["Tümü", "Makale", "Video", "Ses Kaydı", "Kitap", "Radar"];
+const FILTERS: ("Tümü" | ContentType)[] = ["Tümü", "Makale", "Video", "Ses Kaydı", "Kitap", "Kenar Notu"];
 
 type Row =
   | { kind: "entry"; e: ArchiveEntry }
@@ -95,7 +95,7 @@ export function CommandPalette() {
       { kind: "link", label: "Son dizi: Ulusal Kurtuluş Savaşı mı, Milli Mücadele mi?", hint: "14 bölüm · 2026", href: "/yazilar/ulusal-kurtulus-savasi-mi-milli-mucadele-mi/", icon: FileText },
       { kind: "link", label: "Solun Kültür Serüveni", hint: "Video dizisi · Serbestiyet TV", href: "/videolar/?seri=solun-kultur-seruveni", icon: CirclePlay },
       { kind: "link", label: "Bibliyografya", hint: "1983'ten bugüne kitaplar", href: "/kitaplar/", icon: BookOpen },
-      { kind: "link", label: "Entelektüel Radar", hint: "Bugünlerde masamda", href: "/radar/", icon: Radar },
+      { kind: "link", label: "Kenar Notları", hint: "Bugünlerde masamda", href: "/kenar-notlari/", icon: PenLine },
       ...(["feodalizm-atut", "erken-cumhuriyet", "solun-tarihi", "devrimler"] as const).map(
         (t): Row => ({ kind: "link", label: TOPICS[t].label, hint: "Konu sayfası", href: `/konular/${t}/`, icon: Hash }),
       ),

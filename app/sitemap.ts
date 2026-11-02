@@ -10,7 +10,7 @@ export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const u = (p: string) => `${SITE_URL}${p}`;
-  const fixed = ["/", "/arsiv/", "/yazilar/", "/diziler/", "/kitaplar/", "/videolar/", "/radar/", "/biyografi/", "/hakkinda/"];
+  const fixed = ["/", "/arsiv/", "/yazilar/", "/diziler/", "/kitaplar/", "/videolar/", "/kenar-notlari/", "/biyografi/", "/hakkinda/"];
   return [
     ...fixed.map((p) => ({ url: u(p) })),
     ...ARTICLES.map((a) => ({ url: u(`/yazilar/${a.slug}/`), lastModified: a.publishedAt.length === 10 ? a.publishedAt : undefined })),

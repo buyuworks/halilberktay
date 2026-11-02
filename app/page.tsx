@@ -144,15 +144,15 @@ export default function HomePage() {
                   <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-60 animate-ping" />
                   <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
                 </span>
-                <p className="kicker text-accent">Entelektüel Radar</p>
+                <p className="kicker text-accent">Kenar Notları</p>
               </div>
               <h2 id="radar-baslik" className="font-display text-[2rem] leading-tight mt-2">
                 Bugünlerde masamda
               </h2>
-              <p className="meta mt-1 mb-6">Okuduklarım, izlediklerim, takip ettiklerim · haftalık</p>
+              <p className="meta mt-1 mb-6">Okudukları, izledikleri, takip ettikleri</p>
               <RadarFeed items={RADAR.slice(0, 3)} />
-              <Link href="/radar/" className="group mt-6 pt-5 border-t border-rule flex items-center justify-between text-sm text-accent">
-                <span className="link-underline">Tüm radar akışı</span>
+              <Link href="/kenar-notlari/" className="group mt-6 pt-5 border-t border-rule flex items-center justify-between text-sm text-accent">
+                <span className="link-underline">Tüm kenar notları</span>
                 <ArrowRight size={15} className="transition-transform group-hover:translate-x-1" />
               </Link>
             </div>

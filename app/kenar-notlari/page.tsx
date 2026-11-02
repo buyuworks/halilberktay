@@ -3,7 +3,7 @@ import { RADAR } from "@/data/radar";
 import { RadarFeed } from "@/components/RadarFeed";
 
 export const metadata: Metadata = {
-  title: "Entelektüel Radar",
+  title: "Kenar Notları",
   description: "Halil Berktay'ın bugünlerde okudukları, izledikleri ve takip ettikleri, kısa notlarıyla.",
 };
 
@@ -18,11 +18,11 @@ export default function RadarPage() {
               <span className="absolute inline-flex h-full w-full rounded-full bg-accent opacity-60 animate-ping" />
               <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent" />
             </span>
-            <p className="kicker text-accent">Entelektüel Radar</p>
+            <p className="kicker text-accent">Kenar Notları</p>
           </div>
           <h1 className="font-display text-display tracking-[-0.02em] mt-3">Bugünlerde masamda</h1>
           <p className="mt-5 font-serif text-xl text-ink-soft leading-relaxed max-w-2xl">
-            Okuduğum kitaplar, dünya ve Türkiye basınından takip ettiğim yazılar, izlediğim kayıtlar. Kısa notlarla, bağlantılarıyla.
+            Halil Berktay&apos;ın bugünlerde okuduğu kitaplar, takip ettiği yazılar ve izlediği kayıtlar; kısa notlar ve bağlantılarla.
           </p>
         </div>
         <div className="lg:col-span-4 lg:border-l lg:border-rule lg:pl-8 self-end">

@@ -3,7 +3,7 @@ export const NAV = [
   { href: "/yazilar/", label: "Yazılar" },
   { href: "/videolar/", label: "Video & Ses" },
   { href: "/kitaplar/", label: "Kitaplar" },
-  { href: "/radar/", label: "Radar" },
+  { href: "/kenar-notlari/", label: "Kenar Notları" },
   { href: "/biyografi/", label: "Biyografi" },
 ];
 

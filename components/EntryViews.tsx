@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowUpRight, BookOpen, FileText, Headphones, CirclePlay, Radar } from "lucide-react";
+import { ArrowUpRight, BookOpen, FileText, Headphones, CirclePlay, PenLine } from "lucide-react";
 import type { ArchiveEntry } from "@/lib/content";
 import type { ContentType, TopicId } from "@/lib/types";
 import { TOPICS } from "@/data/topics";
@@ -11,7 +11,7 @@ const ICON: Record<ContentType, typeof FileText> = {
   Video: CirclePlay,
   "Ses Kaydı": Headphones,
   Kitap: BookOpen,
-  Radar: Radar,
+  "Kenar Notu": PenLine,
 };
 
 export function TypeLabel({ type, kind }: { type: ContentType; kind?: string }) {
@@ -40,7 +40,7 @@ export function TopicTag({ id, href = true, active = false }: { id: TopicId; hre
 
 /** Arşiv listesi satırı — katalog fişi düzeni: sol künye sütunu + başlık/özet */
 export function ArchiveRow({ e, query = "" }: { e: ArchiveEntry; query?: string }) {
-  const internal = e.type !== "Radar";
+  const internal = e.type !== "Kenar Notu";
   const Title = (
     <span className="font-display text-[1.35rem] sm:text-[1.5rem] leading-[1.15] link-underline">
       <span lang={e.lang}>

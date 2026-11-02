@@ -18,7 +18,7 @@ import { cx } from "@/lib/format";
    yönlendirilmez. Durum URL'de tutulur → paylaşılabilir arama.
 ------------------------------------------------------------------- */
 
-const TYPES: ContentType[] = ["Makale", "Video", "Ses Kaydı", "Kitap", "Radar"];
+const TYPES: ContentType[] = ["Makale", "Video", "Ses Kaydı", "Kitap", "Kenar Notu"];
 const MIN_YEAR = 1980;
 const MAX_YEAR = 2026;
 type Sort = "yeni" | "eski" | "ilgi";

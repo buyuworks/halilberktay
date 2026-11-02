@@ -76,4 +76,4 @@ export const SOURCES: Record<Source, { description: string; years: string }> = {
   "Kitap Bölümü": { description: "Derleme kitaplardaki bölümler", years: "1985–2005" },
 };
 
-export const CONTENT_TYPES: ContentType[] = ["Makale", "Video", "Ses Kaydı", "Kitap", "Radar"];
+export const CONTENT_TYPES: ContentType[] = ["Makale", "Video", "Ses Kaydı", "Kitap", "Kenar Notu"];

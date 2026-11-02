@@ -31,7 +31,7 @@ export type Source =
   | "Periplus"
   | "Kitap Bölümü";
 
-export type ContentType = "Makale" | "Video" | "Ses Kaydı" | "Kitap" | "Radar";
+export type ContentType = "Makale" | "Video" | "Ses Kaydı" | "Kitap" | "Kenar Notu";
 
 export interface Article {
   id: string;

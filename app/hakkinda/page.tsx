@@ -11,7 +11,7 @@ const SECTIONS = [
   { id: "neden", text: "Neden bir arşiv?" },
   { id: "nasil", text: "Arşiv nasıl düzenlendi?" },
   { id: "arama", text: "Arama ve keşif" },
-  { id: "radar", text: "Radar: yaşayan defter" },
+  { id: "kenar-notlari", text: "Kenar Notları: yaşayan defter" },
   { id: "kaynaklar", text: "Kaynaklar ve doğruluk" },
 ];
 
@@ -67,7 +67,7 @@ export default function AboutPage() {
           <h2 id="nasil">Arşiv nasıl düzenlendi?</h2>
           <p>
             Arşivin omurgası beş içerik türünden oluşuyor: yazılar (köşe yazıları, akademik makaleler, kitap bölümleri), video ve
-            ses kayıtları, kitaplar ve Radar notları. Hepsi aynı ortak dizine yazılıyor; bu da arama ve filtrelemenin türler arasında
+            ses kayıtları, kitaplar ve kenar notları. Hepsi aynı ortak dizine yazılıyor; bu da arama ve filtrelemenin türler arasında
             kesintisiz çalışmasını sağlıyor.
           </p>
           <p>
@@ -88,10 +88,10 @@ export default function AboutPage() {
             içindeki yoğunluğunu da bir bakışta gösterir.
           </p>
 
-          <h2 id="radar">Radar: yaşayan defter</h2>
+          <h2 id="kenar-notlari">Kenar Notları: yaşayan defter</h2>
           <p>
-            Arşiv geçmişe bakarken Radar bugüne bakar. Berktay&apos;ın o hafta okuduğu kitaplar, takip ettiği makaleler ve izlediği
-            kayıtlar, kendi kısa notlarıyla birlikte burada paylaşılır. Radar notları da arşive dahildir ve aranabilir.
+            Arşiv geçmişe bakarken Kenar Notları bugüne bakar. Berktay&apos;ın o hafta okuduğu kitaplar, takip ettiği makaleler ve izlediği
+            kayıtlar, kendi kısa notlarıyla birlikte burada paylaşılır. Kenar notları da arşive dahildir ve aranabilir.
           </p>
 
           <h2 id="kaynaklar">Kaynaklar ve doğruluk</h2>

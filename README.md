@@ -1,6 +1,6 @@
 # Halil Berktay · Arşiv ve Defter (prototip)
 
-Tarihçi Prof. Dr. Halil Berktay'ın kitapları, köşe yazıları, akademik makaleleri, video/ses kayıtları ve güncel okumalarını ("Entelektüel Radar") tek çatı altında toplayan dijital arşiv.
+Tarihçi Prof. Dr. Halil Berktay'ın kitapları, köşe yazıları, akademik makaleleri, video/ses kayıtları ve güncel okumalarını ("Kenar Notları") tek çatı altında toplayan dijital arşiv.
 
 ## Çalıştırma
 
@@ -23,7 +23,7 @@ NEXT_PUBLIC_SITE_URL=https://alan-adi.tld npm run build    # statik çıktı: ou
 | Veri | Tipli TS veri dosyaları (`data/*.ts`, şema `lib/types.ts`) | CMS'e geçişte şema aynen korunur. |
 | SEO | Schema.org JSON-LD (OpinionNewsArticle, ScholarlyArticle, Book, VideoObject), OpenGraph | Google'da makale/kitap zengin sonuçları. |
 
-**Ölçeklenme yolu (1000+ yazı):** Veri → headless CMS (Sanity / Payload) veya Postgres; arama → derleme anında **Pagefind** (statik, ücretsiz) ya da **Meilisearch/Typesense** (anlık, yazım hatası toleranslı). Radar akışı → CMS'te telefondan doldurulabilen kısa form.
+**Ölçeklenme yolu (1000+ yazı):** Veri → headless CMS (Sanity / Payload) veya Postgres; arama → derleme anında **Pagefind** (statik, ücretsiz) ya da **Meilisearch/Typesense** (anlık, yazım hatası toleranslı). Kenar notları → CMS'te telefondan doldurulabilen kısa form.
 
 ## 2. Tasarım sistemi
 
@@ -57,7 +57,7 @@ NEXT_PUBLIC_SITE_URL=https://alan-adi.tld npm run build    # statik çıktı: ou
 | Yazı özetleri ve dizi açıklamaları | ❌ bilerek yok: içerik hakkında editoryal yorum yazılmaz | — |
 | YouTube kimlikleri | ⏳ eklenecek (alanı doldurmak yeterli) | — |
 | Yazıların tam metinleri | ⏳ aktarılacak | — |
-| Radar notları | ⏳ eserler gerçek; yorum alanları Berktay'ın notları için boş | — |
+| Kenar notları | ⏳ eserler gerçek; yorum alanları Berktay'ın notları için boş | — |
 | "Bir Dönem Kapanırken" özeti | ⚠️ taslak, doğrulanacak | — |
 | 5 yazının yalnızca ay bilgisi var | ⚠️ "Ara 2018" gibi gösteriliyor | site taşıma tarihi (2020-05-28) güvenilmez |
 
@@ -76,12 +76,12 @@ Betik yazı kimliğine göre tekrarları ayıklar, dizileri (`SERIES` kuralları
 
 axe-core ile WCAG 2.1 A/AA denetimi (11 sayfa, açık ve koyu tema): kontrast, liste yapısı ve etiketler temiz. Tek istisna biyografideki büyük "1980'ler" gibi on yıl etiketleri: her olayın kendi yılı ayrıca yazıldığı için bunlar süs olarak işaretlendi (`aria-hidden`).
 - `--ink-mute` açık temada `#68625a` (kağıt üstünde 5.4:1), koyu temada `#998f80` (5.8:1).
-- Radar'daki örnek notlar arşiv listesinde ve aramada "örnek not" etiketiyle görünür.
+- Kenar notlarındaki örnek notlar arşiv listesinde ve aramada "örnek not" etiketiyle görünür.
 
 ## Dosya yapısı
 
 ```
-app/            sayfalar (/, /arsiv, /yazilar, /yazilar/[slug], /yazilar/yil/[yil], /diziler, /diziler/[dizi], /konular/[konu], /kitaplar/[slug], /videolar/[slug], /radar, /biyografi, /hakkinda)
+app/            sayfalar (/, /arsiv, /yazilar, /yazilar/[slug], /yazilar/yil/[yil], /diziler, /diziler/[dizi], /konular/[konu], /kitaplar/[slug], /videolar/[slug], /kenar-notlari, /biyografi, /hakkinda)
                 /arama-dizini.json: ⌘K ve arşiv için ayrı arama dizini (≈90 KB gzip, ilk açılışta yüklenir)
 components/     CommandPalette (⌘K), ArchiveExplorer, ReaderTools, BookCover, VideoFrame, CinemaModal, Timeline…
 data/           articles (elle), serbestiyet-arsiv (üretilen), books, videos, radar, timeline, topics

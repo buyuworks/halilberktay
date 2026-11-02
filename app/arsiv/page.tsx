@@ -4,7 +4,7 @@ import { ArchiveExplorer } from "@/components/ArchiveExplorer";
 
 export const metadata: Metadata = {
   title: "Birleşik Arşiv",
-  description: "Makale, video, ses kaydı, kitap ve radar kayıtlarında tür, mecra, konu ve yıl filtreleriyle arama.",
+  description: "Makale, video, ses kaydı, kitap ve kenar notlarında tür, mecra, konu ve yıl filtreleriyle arama.",
 };
 
 export default function ArchivePage() {
@@ -14,7 +14,7 @@ export default function ArchivePage() {
         <p className="kicker text-accent">Birleşik arşiv</p>
         <h1 className="font-display text-headline mt-2 tracking-[-0.01em]">Arşivde arayın, kesiştirin, keşfedin</h1>
         <p className="mt-3 max-w-2xl font-serif text-lg text-ink-soft">
-          Yazılar, akademik makaleler, video ve ses kayıtları, kitaplar ve radar notları tek bir dizinde. Filtreler
+          Yazılar, akademik makaleler, video ve ses kayıtları, kitaplar ve kenar notları tek bir dizinde. Filtreler
           birbirleriyle kesişir; adres çubuğundaki bağlantı aramanızı olduğu gibi paylaşır.
         </p>
       </header>

@@ -17,7 +17,7 @@ export const SHOWCASE_TOPICS: TopicId[] = [
 ];
 
 export function showcaseData(index: ArchiveEntry[], perCell = 9) {
-  const pool = index.filter((e) => e.type !== "Radar");
+  const pool = index.filter((e) => e.type !== "Kenar Notu");
   const pick = new Map<string, ArchiveEntry>();
   const counts: Record<string, number> = {};
   for (const t of SHOWCASE_TYPES) {

@@ -26,7 +26,7 @@ export function ArchiveShowcase({ entries, counts }: { entries: ArchiveEntry[]; 
   const [topic, setTopic] = useState<TopicId | null>(null);
   const [video, setVideo] = useState<Video | null>(null);
 
-  const pool = entries.filter((e) => e.type !== "Radar");
+  const pool = entries.filter((e) => e.type !== "Kenar Notu");
   const filtered = useMemo(
     () => pool.filter((e) => (type === "Tümü" || e.type === type) && (!topic || e.tags.includes(topic))),
     [pool, type, topic],
