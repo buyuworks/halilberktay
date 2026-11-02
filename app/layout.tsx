@@ -1,3 +1,4 @@
+import { SITE_URL } from "@/lib/site";
 import type { Metadata, Viewport } from "next";
 import { Newsreader, Source_Serif_4, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
@@ -28,6 +29,8 @@ const plexMono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
+  alternates: { types: { "application/rss+xml": [{ url: "/rss.xml", title: "Halil Berktay · Yeni yazılar" }] } },
   title: { default: "Halil Berktay · Arşiv ve Defter", template: "%s · Halil Berktay" },
   description:
     "Tarihçi Prof. Dr. Halil Berktay'ın kitapları, köşe yazıları, akademik makaleleri, video ve ses kayıtları ile güncel okumalarını bir araya getiren dijital arşiv.",

@@ -7,7 +7,8 @@ Tarihçi Prof. Dr. Halil Berktay'ın kitapları, köşe yazıları, akademik mak
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # statik çıktı: out/ (her statik barındırmada çalışır: Vercel, Netlify, GitHub Pages, Cloudflare Pages)
+NEXT_PUBLIC_SITE_URL=https://alan-adi.tld npm run build    # statik çıktı: out/ (sitemap.xml, robots.txt, rss.xml dahil; alan adı verilmezse yer tutucu kullanılır)
+#  (her statik barındırmada çalışır: Vercel, Netlify, GitHub Pages, Cloudflare Pages)
 ```
 
 ## 1. Mimari ve teknoloji yığını
