@@ -149,7 +149,7 @@ export default function HomePage() {
               <h2 id="radar-baslik" className="font-display text-[2rem] leading-tight mt-2">
                 Bugünlerde masamda
               </h2>
-              <p className="meta mt-1 mb-6">Okudukları, izledikleri, takip ettikleri</p>
+              <p className="meta mt-1 mb-6">Okuduklarım, izlediklerim, takip ettiklerim</p>
               <RadarFeed items={RADAR.slice(0, 3)} />
               <Link href="/kenar-notlari/" className="group mt-6 pt-5 border-t border-rule flex items-center justify-between text-sm text-accent">
                 <span className="link-underline">Tüm kenar notları</span>

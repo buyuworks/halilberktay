@@ -22,7 +22,7 @@ export default function RadarPage() {
           </div>
           <h1 className="font-display text-display tracking-[-0.02em] mt-3">Bugünlerde masamda</h1>
           <p className="mt-5 font-serif text-xl text-ink-soft leading-relaxed max-w-2xl">
-            Halil Berktay&apos;ın bugünlerde okuduğu kitaplar, takip ettiği yazılar ve izlediği kayıtlar; kısa notlar ve bağlantılarla.
+            Okuduğum kitaplar, takip ettiğim yazılar, izlediğim kayıtlar. Kısa notlar ve bağlantılarla.
           </p>
         </div>
         <div className="lg:col-span-4 lg:border-l lg:border-rule lg:pl-8 self-end">
