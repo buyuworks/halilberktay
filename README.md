@@ -70,10 +70,16 @@ npm run build
 ```
 Betik yazı kimliğine göre tekrarları ayıklar, dizileri (`SERIES` kuralları) ve İngilizce çevirileri ("EN 1, EN 2…") tanır, konu etiketlerini atar. Elle düzenlenen yazılar `data/articles.ts` içindedir ve üretilen dosyada atlanır.
 
+## Erişilebilirlik
+
+axe-core ile WCAG 2.1 A/AA denetimi (11 sayfa, açık ve koyu tema): kontrast, liste yapısı ve etiketler temiz. Tek istisna biyografideki büyük "1980'ler" gibi on yıl etiketleri: her olayın kendi yılı ayrıca yazıldığı için bunlar süs olarak işaretlendi (`aria-hidden`).
+- `--ink-mute` açık temada `#68625a` (kağıt üstünde 5.4:1), koyu temada `#998f80` (5.8:1).
+- Radar'daki örnek notlar arşiv listesinde ve aramada "örnek not" etiketiyle görünür.
+
 ## Dosya yapısı
 
 ```
-app/            sayfalar (/, /arsiv, /yazilar, /yazilar/[slug], /yazilar/yil/[yil], /konular/[konu], /kitaplar/[slug], /videolar/[slug], /radar, /biyografi, /hakkinda)
+app/            sayfalar (/, /arsiv, /yazilar, /yazilar/[slug], /yazilar/yil/[yil], /diziler, /diziler/[dizi], /konular/[konu], /kitaplar/[slug], /videolar/[slug], /radar, /biyografi, /hakkinda)
                 /arama-dizini.json: ⌘K ve arşiv için ayrı arama dizini (≈90 KB gzip, ilk açılışta yüklenir)
 components/     CommandPalette (⌘K), ArchiveExplorer, ReaderTools, BookCover, VideoFrame, CinemaModal, Timeline…
 data/           articles (elle), serbestiyet-arsiv (üretilen), books, videos, radar, timeline, topics

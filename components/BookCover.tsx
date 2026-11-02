@@ -12,7 +12,7 @@ const PALETTES = [
   { bg: "#1f3550", fg: "#efe9dc", line: "#c9a96a" }, // lacivert + altın
   { bg: "#ece4d3", fg: "#1b1a17", line: "#8b261d" }, // krem
   { bg: "#2b2a26", fg: "#e9e1cf", line: "#c9a96a" }, // mürekkep
-  { bg: "#5d6b4f", fg: "#f2ecdf", line: "#f2ecdf" }, // zeytin
+  { bg: "#4b5840", fg: "#f2ecdf", line: "#f2ecdf" }, // zeytin
   { bg: "#c8b48f", fg: "#1b1a17", line: "#1b1a17" }, // kraft
 ];
 
@@ -77,10 +77,10 @@ export function BookCover({ book, size = "md", className }: { book: Book; size?:
           )}
         </div>
         <div className="mt-auto pt-3 flex items-end justify-between gap-2">
-          <span className="font-sans opacity-75 leading-tight" style={{ fontSize: size === "lg" ? "0.7rem" : "0.5rem" }}>
+          <span className="font-sans opacity-90 leading-tight" style={{ fontSize: size === "lg" ? "0.7rem" : "0.5rem" }}>
             {book.publisher.split(",")[0]}
           </span>
-          <span className="font-mono opacity-75" style={{ fontSize: size === "lg" ? "0.75rem" : "0.55rem" }}>
+          <span className="font-mono opacity-90" style={{ fontSize: size === "lg" ? "0.75rem" : "0.55rem" }}>
             {book.year}
           </span>
         </div>

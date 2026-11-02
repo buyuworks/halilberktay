@@ -82,7 +82,7 @@ export default async function YearPage({ params }: { params: Promise<{ yil: stri
         <div className="lg:col-span-8 min-w-0">
           {[...byMonth.entries()].map(([m, list]) => (
             <section key={m} className="mb-10" aria-labelledby={`ay-${m}`}>
-              <h2 id={`ay-${m}`} className="font-display text-3xl text-ink/30 dark:text-ink/40 leading-none mb-3">
+              <h2 id={`ay-${m}`} className="font-display text-3xl text-ink-mute leading-none mb-3">
                 {MONTHS[m - 1]}
                 <span className="meta ml-3 align-middle">{list.length}</span>
               </h2>

@@ -31,6 +31,8 @@ export interface ArchiveEntry {
   /** Görüntülenecek bölüm etiketi (ör. "14b") */
   partLabel?: string;
   lang?: "en";
+  /** Yorum metni örnektir (Radar prototip notları) */
+  sample?: boolean;
   youtubeId?: string | null;
   kind?: string;
   citation?: string;
@@ -105,6 +107,7 @@ export function buildIndex(): ArchiveEntry[] {
     source: x.author ? `${x.author} · ${x.itemSource}` : x.itemSource,
     tags: x.tags ?? [],
     kind: x.category,
+    sample: x.placeholder || undefined,
   }));
   return [...a, ...v, ...b, ...r].sort((p, q) => q.date.localeCompare(p.date));
 }

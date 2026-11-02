@@ -55,7 +55,7 @@ export function Timeline({ items }: { items: TLItem[] }) {
           return (
             <li key={e.title + i}>
               {showDecade && (
-                <p className="relative font-display text-[3.5rem] sm:text-[5rem] leading-none text-ink/10 dark:text-ink/15 mt-10 mb-4 first:mt-0 select-none tabular-nums">
+                <p aria-hidden className="relative font-display text-[3.5rem] sm:text-[5rem] leading-none text-ink/10 dark:text-ink/15 mt-10 mb-4 first:mt-0 select-none tabular-nums">
                   {decade}&apos;ler
                 </p>
               )}

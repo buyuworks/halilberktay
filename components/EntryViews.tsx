@@ -58,6 +58,11 @@ export function ArchiveRow({ e, query = "" }: { e: ArchiveEntry; query?: string 
             EN
           </span>
         )}
+        {e.sample && (
+          <span className="meta border border-dashed border-accent/60 text-accent rounded-sm px-1 leading-tight" title="Yorum metni tasarım için yazılmış örnektir">
+            örnek not
+          </span>
+        )}
         <span className="meta hidden sm:block truncate max-w-full" title={e.source}>
           {e.source}
         </span>

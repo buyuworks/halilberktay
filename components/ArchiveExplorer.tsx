@@ -169,7 +169,7 @@ function ArchiveExplorerView({ entries }: { entries: ArchiveEntry[] }) {
                   on ? "bg-ink text-paper border-ink" : "border-rule text-ink-soft hover:border-ink-mute",
                 )}
               >
-                {TOPICS[t].short ?? TOPICS[t].label} <span className="opacity-60 tabular-nums">{c}</span>
+                {TOPICS[t].short ?? TOPICS[t].label} <span className="opacity-80 tabular-nums">{c}</span>
               </button>
             );
           })}
@@ -279,7 +279,7 @@ function ArchiveExplorerView({ entries }: { entries: ArchiveEntry[] }) {
                   <div key={e.id}>
                     {showYear && (
                       <div className="flex items-baseline gap-4 pt-8 first:pt-0">
-                        <span className="font-display text-5xl text-ink/15 dark:text-ink/20 tabular-nums leading-none">{e.year}</span>
+                        <span className="font-display text-5xl text-ink/50 dark:text-ink/45 tabular-nums leading-none">{e.year}</span>
                         <span className="flex-1 border-t border-rule" />
                       </div>
                     )}

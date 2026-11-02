@@ -126,14 +126,16 @@ export default function WritingsPage() {
           </ol>
           <div className="mt-12">
             <p className="kicker text-ink-mute mb-3">Mecralar</p>
-            <dl className="divide-y divide-rule border-y border-rule">
+            <ul className="divide-y divide-rule border-y border-rule">
               {(Object.keys(SOURCES) as Source[]).map((s) => (
-                <Link key={s} href={`/arsiv/?kaynak=${encodeURIComponent(s)}`} className="flex justify-between gap-4 py-2.5 hover:text-accent">
-                  <dt>{s}</dt>
-                  <dd className="meta">{SOURCES[s].years}</dd>
-                </Link>
+                <li key={s}>
+                  <Link href={`/arsiv/?kaynak=${encodeURIComponent(s)}`} className="flex justify-between gap-4 py-2.5 hover:text-accent">
+                    <span>{s}</span>
+                    <span className="meta">{SOURCES[s].years}</span>
+                  </Link>
+                </li>
               ))}
-            </dl>
+            </ul>
           </div>
         </section>
       </div>

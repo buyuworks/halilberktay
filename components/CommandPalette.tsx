@@ -251,6 +251,7 @@ export function CommandPalette() {
                       <Highlight text={e.title} query={q} />
                     </span>
                     <span className="block text-sm text-ink-soft line-clamp-1 mt-0.5">
+                      {e.sample && <span className="text-accent">[örnek not] </span>}
                       <Highlight text={e.summary} query={q} />
                     </span>
                     <span className="meta block mt-1">

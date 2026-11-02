@@ -14,7 +14,7 @@
   --paper-sunk: #ede7db;     /* gömülü alan, etiket zemini */
   --ink: #1b1a17;            /* ana metin */
   --ink-soft: #4a463f;       /* ikincil metin */
-  --ink-mute: #7a7468;       /* üst veri, tarih */
+  --ink-mute: #68625a;       /* üst veri, tarih */
   --rule: #d9d1c2;           /* 1px ayırıcı çizgi */
   --rule-strong: #1b1a17;    /* kalın editoryal çizgi */
   --accent: #8b261d;         /* kiremit-bordo */
@@ -31,7 +31,7 @@
   --paper-sunk: #24201a;
   --ink: #ebe5d8;
   --ink-soft: #c2baa9;
-  --ink-mute: #8d8576;
+  --ink-mute: #998f80;
   --rule: #353028;
   --rule-strong: #ebe5d8;
   --accent: #e0846f;
