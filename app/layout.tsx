@@ -1,4 +1,4 @@
-import { SITE_URL } from "@/lib/site";
+import { SITE_URL, INDEXABLE } from "@/lib/site";
 import type { Metadata, Viewport } from "next";
 import { Newsreader, Source_Serif_4, Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
@@ -30,6 +30,7 @@ const plexMono = IBM_Plex_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
+  robots: INDEXABLE ? undefined : { index: false, follow: false },
   alternates: { types: { "application/rss+xml": [{ url: "/rss.xml", title: "Halil Berktay · Yeni yazılar" }] } },
   title: { default: "Halil Berktay", template: "%s · Halil Berktay" },
   description:
