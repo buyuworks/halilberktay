@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { RADAR } from "@/data/radar";
 import { RadarFeed } from "@/components/RadarFeed";
+import { ImageSlot } from "@/components/ImageSlot";
+import { DENEME } from "@/components/HomeSections";
 
 export const metadata: Metadata = {
   title: "Kenar Notları",
@@ -26,6 +28,7 @@ export default function RadarPage() {
           </p>
         </div>
         <div className="lg:col-span-4 lg:border-l lg:border-rule lg:pl-8 self-end">
+          <ImageSlot src={DENEME.G1} code="G1" ratio="3:2" label="Okuma masası" className="mb-8" />
           <p className="kicker text-ink-mute mb-3">Bu akışta</p>
           <ul className="grid grid-cols-2 gap-y-2">
             {cats.map((c) => (

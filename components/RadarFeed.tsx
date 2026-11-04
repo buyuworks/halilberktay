@@ -4,16 +4,16 @@ import { formatDateShort, cx } from "@/lib/format";
 
 /* "Bugünlerde masamda" — kürasyon akışı. Her kayıt: tür, eser, kaynak,
    Berktay'ın kısa notu ve dış bağlantı. */
-export function RadarFeed({ items, variant = "column" }: { items: RadarItem[]; variant?: "column" | "page" }) {
+export function RadarFeed({ items, variant = "column" }: { items: RadarItem[]; variant?: "column" | "page" | "strip" }) {
   return (
-    <ol className={cx(variant === "page" ? "divide-y divide-rule" : "")}>
+    <ol className={cx(variant === "page" && "divide-y divide-rule", variant === "strip" && "grid md:grid-cols-3 gap-x-12 gap-y-10")}>
       {items.map((r, i) => (
         <li
           key={r.id}
           id={r.id}
           className={cx(
             "group relative scroll-mt-24",
-            variant === "column" ? "py-5 border-t border-rule first:border-t-0 first:pt-0" : "py-8 grid sm:grid-cols-12 gap-x-8",
+            variant === "column" ? "py-6 border-t border-rule first:border-t-0 first:pt-0" : variant === "strip" ? "pt-5 border-t border-rule" : "py-8 grid sm:grid-cols-12 gap-x-8",
           )}
         >
           <div className={cx("flex items-center gap-2", variant === "page" && "sm:col-span-3 sm:flex-col sm:items-start sm:gap-1.5")}>
@@ -33,7 +33,7 @@ export function RadarFeed({ items, variant = "column" }: { items: RadarItem[]; v
               href={r.externalUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={cx("block mt-2 font-display leading-snug", variant === "page" ? "text-2xl sm:text-[1.75rem]" : "text-[1.18rem]")}
+              className={cx("block mt-2 font-display leading-snug", variant === "page" ? "text-2xl sm:text-[1.75rem]" : variant === "strip" ? "text-[1.35rem]" : "text-[1.22rem]")}
             >
               <span className="link-underline">{r.itemTitle}</span>
               <ArrowUpRight size={15} className="inline ml-1 -mt-1 text-ink-mute group-hover:text-accent transition-colors" />
