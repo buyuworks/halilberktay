@@ -40,6 +40,8 @@ export interface Article {
   summary: string;
   /** Tam metin. Yoksa okuyucu özet + kaynak bağlantısı gösterir. */
   content?: ArticleBlock[];
+  /** Tam metin data/metinler/<kimlik>.json dosyasında (derleme anında okunur) */
+  fullText?: boolean;
   publishedAt: string; // ISO yyyy-mm-dd (yalnızca yıl biliniyorsa yyyy-01-01 + datePrecision)
   datePrecision?: "day" | "month" | "year";
   source: Source;
@@ -69,6 +71,7 @@ export interface ArticleSeries {
 export type VideoSeriesId =
   | "herkes-icin-sosyal-bilim"
   | "solun-kultur-seruveni"
+  | "altmislar-yetmisler"
   | "guncellikten-tarihe"
   | "serbestiyet-tartismalari"
   | "serbestpod"
@@ -115,6 +118,8 @@ export interface Book {
   contributors?: string;
   tags: TopicId[];
   language: "tr" | "en";
+  /** Yalnız yayınevinin/asıl yayımlayıcının kendi sayfası (perakende siteler değil) */
+  source?: { url: string; label: string; note?: string; free?: boolean };
 }
 
 export type RadarCategory = "Kitap" | "Makale" | "Video" | "Gündem";

@@ -6,16 +6,16 @@ import { VideoPoster } from "@/components/VideoFrame";
 import { CinemaModal } from "@/components/CinemaModal";
 import { formatDateShort } from "@/lib/format";
 
-export function VideoShelf({ videos, series }: { videos: Video[]; series: VideoSeries[] }) {
+export function VideoShelf({ videos, series, limit = 5 }: { videos: Video[]; series: VideoSeries[]; limit?: number }) {
   const [open, setOpen] = useState<Video | null>(null);
   const sorted = [...videos].sort((a, b) => b.publishedAt.localeCompare(a.publishedAt));
   const featured = sorted.find((v) => v.series === "solun-kultur-seruveni" && v.part === 1) ?? sorted[0];
-  const rest = sorted.filter((v) => v.id !== featured.id).slice(0, 5);
+  const rest = sorted.filter((v) => v.id !== featured.id).slice(0, limit);
   const sTitle = (id: string) => series.find((s) => s.id === id)?.title;
 
   return (
     <>
-      <div className="grid lg:grid-cols-12 gap-10">
+      <div className="grid lg:grid-cols-12 gap-10 lg:gap-16">
         <button className="group lg:col-span-7 text-left" onClick={() => setOpen(featured)}>
           <VideoPoster video={featured} hideTitle className="ring-1 ring-white/10" />
           <p className="kicker mt-5 text-[#e0846f]">
@@ -29,7 +29,7 @@ export function VideoShelf({ videos, series }: { videos: Video[]; series: VideoS
         <ul className="lg:col-span-5 divide-y divide-white/10 border-y border-white/10 dark:divide-rule dark:border-rule">
           {rest.map((v) => (
             <li key={v.id}>
-              <button className="group w-full flex gap-4 py-4 text-left" onClick={() => setOpen(v)}>
+              <button className="group w-full flex gap-5 py-6 text-left" onClick={() => setOpen(v)}>
                 <VideoPoster video={v} thumb className="w-28 sm:w-32 shrink-0" />
                 <span className="min-w-0">
                   <span className="kicker block opacity-60">

@@ -218,3 +218,14 @@ console.log(`yazı: ${out.length}, dizi: ${seriesOut.length}, dizideki yazı: ${
 console.log("etiketler:", Object.entries(tagCount).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k}:${v}`).join(" "));
 console.log("İngilizce:", out.filter((a) => a.language).map((a) => a.title).join(" | "));
 for (const s of seriesOut) console.log(s.id, seriesMembers.get(s.id).map((m) => m.a.series.label ?? m.a.series.part).join(","));
+
+// ——— Tam metin dizini: data/metinler/*.json → data/metin-dizini.json { yazıKimliği: okumaDakikası }
+// (okuma süresi: dakikada ~200 sözcük). Metni olan yazılar okuyucuda tam metinle açılır.
+const metinDir = path.join(root, "data/metinler");
+const dizin = {};
+for (const f of fs.existsSync(metinDir) ? fs.readdirSync(metinDir).filter((x) => /^\d+\.json$/.test(x)).sort((a, b) => parseInt(a) - parseInt(b)) : []) {
+  const j = JSON.parse(fs.readFileSync(path.join(metinDir, f), "utf8"));
+  dizin[j.pid] = Math.max(1, Math.round(j.words / 200));
+}
+fs.writeFileSync(path.join(root, "data/metin-dizini.json"), JSON.stringify(dizin));
+console.log("tam metinli yazı:", Object.keys(dizin).length);

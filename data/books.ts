@@ -67,6 +67,11 @@ export const BOOKS: Book[] = [
       "Osmanlı tarihinde devlet ve köylü ilişkisine yeni yaklaşımları bir araya getiren uluslararası derleme. Berktay'ın \"The Search for the Peasant in Western and Turkish History/Historiography\" ve \"Three Empires and the Societies They Governed\" bölümlerini içerir. (Önce The Journal of Peasant Studies özel sayısı olarak yayımlandı.)",
     tags: ["osmanli-iktisat", "feodalizm-atut", "osmanli"],
     language: "en",
+    source: {
+      url: "https://www.routledge.com/New-Approaches-to-State-and-Peasant-in-Ottoman-History/Berktay-Faroqhi/p/book/9781138644830",
+      label: "Routledge",
+      note: "Routledge Library Editions: Turkey dizisinde yeniden basıldı (2017); ciltli, ciltsiz ve e-kitap.",
+    },
   },
   {
     id: "b-1997-inkilap",
@@ -139,6 +144,12 @@ export const BOOKS: Book[] = [
       "Güneydoğu Avrupa ülkelerinde tarih öğretimini milliyetçi anlatılardan arındırmayı amaçlayan Ortak Tarih Projesi'nin dört ciltlik çalışma kitabı dizisinin Osmanlı İmparatorluğu cildi.",
     tags: ["osmanli", "milliyetcilik", "tarih-yazimi"],
     language: "en",
+    source: {
+      url: "https://jointhistory.net/jhp-books/",
+      label: "Joint History Project",
+      note: "CDRSEE'nin dizisi proje sitesinde, Türkçe ve İngilizce dahil on dilde ücretsiz PDF olarak yayımlanıyor.",
+      free: true,
+    },
   },
   {
     id: "b-2008-otuz-yil",
@@ -193,5 +204,9 @@ export const BOOKS: Book[] = [
       "1983 tarihli klasik çalışmanın, yazarın bugünden bakan kapsamlı yeni girişiyle gözden geçirilmiş baskısı.",
     tags: ["erken-cumhuriyet", "milliyetcilik", "tarih-yazimi"],
     language: "tr",
+    source: {
+      url: "https://www.kopernikkitap.com.tr/cumhuriyet-ideolojisi-ve-fuat-k%C3%B6pr%C3%BCl%C3%BC-1662",
+      label: "Kopernik Kitap",
+    },
   },
 ];

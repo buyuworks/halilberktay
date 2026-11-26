@@ -9,7 +9,7 @@ import { TOPICS } from "@/data/topics";
 import { useArchiveIndex } from "@/lib/useArchiveIndex";
 import { createSearcher } from "@/lib/search";
 import { ArchiveRow } from "@/components/EntryViews";
-import { cx } from "@/lib/format";
+import { cx, decadeLabel } from "@/lib/format";
 
 /* ------------------------------------------------------------------
    BİRLEŞİK ARŞİV — ÇAPRAZ (FASETLİ) FİLTRELEME
@@ -431,7 +431,7 @@ function YearHistogram({
               range[0] === d && range[1] === Math.min(d + 9, MAX_YEAR) ? "border-accent !text-accent" : "border-rule hover:border-ink-mute",
             )}
           >
-            {String(d).slice(2)}&apos;ler
+            {decadeLabel(d, true)}
           </button>
         ))}
       </div>

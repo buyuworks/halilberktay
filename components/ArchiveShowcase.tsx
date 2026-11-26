@@ -21,7 +21,7 @@ const FEATURED_TOPICS = SHOWCASE_TOPICS;
 
 /* Ana sayfadaki Birleşik Arşiv vitrini: tür × konu çapraz filtresi */
 /** entries: vitrin için önceden seçilmiş alt küme; counts: tam arşivdeki sayılar ("Tür|konu") */
-export function ArchiveShowcase({ entries, counts }: { entries: ArchiveEntry[]; counts?: Record<string, number> }) {
+export function ArchiveShowcase({ entries, counts, limit }: { entries: ArchiveEntry[]; counts?: Record<string, number>; limit?: number }) {
   const [type, setType] = useState<(typeof TYPES)[number]>("Tümü");
   const [topic, setTopic] = useState<TopicId | null>(null);
   const [video, setVideo] = useState<Video | null>(null);
@@ -53,7 +53,7 @@ export function ArchiveShowcase({ entries, counts }: { entries: ArchiveEntry[]; 
     }
     return out;
   }, [filtered, isMix]);
-  const shown = diversified.slice(0, isMix ? 8 : 9);
+  const shown = diversified.slice(0, limit ? (isMix ? limit - 1 : limit) : isMix ? 8 : 9);
   const count = (t: (typeof TYPES)[number]) =>
     counts?.[`${t}|${topic ?? ""}`] ??
     pool.filter((e) => (t === "Tümü" || e.type === t) && (!topic || e.tags.includes(topic))).length;
@@ -64,7 +64,7 @@ export function ArchiveShowcase({ entries, counts }: { entries: ArchiveEntry[]; 
 
   return (
     <div>
-      <div className="flex flex-col gap-5 pb-5 border-b border-rule">
+      <div className="flex flex-col gap-6 pb-7 border-b border-rule">
         <div className="flex flex-wrap gap-x-5 gap-y-2" role="tablist" aria-label="İçerik türü">
           {TYPES.map((t) => (
             <button
@@ -110,7 +110,7 @@ export function ArchiveShowcase({ entries, counts }: { entries: ArchiveEntry[]; 
         </div>
       )}
 
-      <div className="mt-8 flex justify-end">
+      <div className="mt-10 flex justify-end">
         <Link href={`/arsiv/${params.size ? `?${params}` : ""}`} className="group inline-flex items-center gap-2 text-accent">
           <span className="link-underline">{filtered.length} kaydın tümünü gelişmiş arşivde gör</span>
           <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -123,7 +123,7 @@ export function ArchiveShowcase({ entries, counts }: { entries: ArchiveEntry[]; 
 }
 
 function ShowcaseCell({ e, big, onVideo }: { e: ArchiveEntry; big: boolean; onVideo: (v: Video) => void }) {
-  const base = cx("group border-r border-b border-rule p-5 sm:p-6 flex flex-col min-h-[15rem]", big && "sm:col-span-2 lg:row-span-1");
+  const base = cx("group border-r border-b border-rule p-6 sm:p-8 lg:p-10 flex flex-col min-h-[17rem] lg:min-h-[19rem]", big && "sm:col-span-2 lg:row-span-1");
   if (e.type === "Video" || e.type === "Ses Kaydı") {
     const v = VIDEOS.find((x) => x.id === e.id)!;
     return (

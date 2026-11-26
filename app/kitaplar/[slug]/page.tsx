@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { BOOKS } from "@/data/books";
 import { ARTICLES } from "@/data/articles";
 import { BookCover } from "@/components/BookCover";
@@ -64,6 +64,20 @@ export default async function BookPage({ params }: { params: Promise<{ slug: str
           {b.englishTitle && <p className="meta mt-3">İng. {b.englishTitle}</p>}
 
           <p className="mt-8 font-serif text-xl leading-relaxed max-w-measure">{b.description}</p>
+
+          {b.source && (
+            <div className="mt-8">
+              <a
+                href={b.source.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 border border-ink px-4 py-2.5 text-sm hover:bg-ink hover:text-paper transition-colors"
+              >
+                {b.source.free ? "Ücretsiz oku" : "Yayınevinden edin"} · {b.source.label} <ArrowUpRight size={14} />
+              </a>
+              {b.source.note && <p className="meta mt-2 max-w-measure">{b.source.note}</p>}
+            </div>
+          )}
 
           <dl className="mt-10 grid sm:grid-cols-2 border-t border-rule">
             {[
