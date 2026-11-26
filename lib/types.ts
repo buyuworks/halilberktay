@@ -118,6 +118,8 @@ export interface Book {
   contributors?: string;
   tags: TopicId[];
   language: "tr" | "en";
+  /** Yalnız yayınevinin/asıl yayımlayıcının kendi sayfası (perakende siteler değil) */
+  source?: { url: string; label: string; note?: string; free?: boolean };
 }
 
 export type RadarCategory = "Kitap" | "Makale" | "Video" | "Gündem";

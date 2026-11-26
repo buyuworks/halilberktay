@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import type { TimelineEvent } from "@/lib/types";
-import { cx } from "@/lib/format";
+import { decadeLabel, cx } from "@/lib/format";
 
 export type TLItem = TimelineEvent & { href?: string };
 
@@ -56,7 +56,7 @@ export function Timeline({ items }: { items: TLItem[] }) {
             <li key={e.title + i}>
               {showDecade && (
                 <p aria-hidden className="relative font-display text-[3.5rem] sm:text-[5rem] leading-none text-ink/10 dark:text-ink/15 mt-10 mb-4 first:mt-0 select-none tabular-nums">
-                  {decade}&apos;ler
+                  {decadeLabel(decade)}
                 </p>
               )}
               <div className="relative grid grid-cols-[5.5rem_1fr] sm:grid-cols-[7.5rem_1fr] gap-x-6 pb-8 group">
