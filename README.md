@@ -46,7 +46,7 @@ NEXT_PUBLIC_SITE_URL=https://alan-adi.tld npm run build    # statik çıktı: ou
 
 | Veri | Durum | Kaynak |
 |---|---|---|
-| 864 Serbestiyet köşe yazısı, 2014–2026 (başlık, tarih, bağlantı) | ✅ yazar arşivinin 29 sayfasının tamamı | serbestiyet.com yazar sayfası (`data/raw/`) |
+| 868 Serbestiyet köşe yazısı, 2014–2026 (başlık, tarih, bağlantı) | ✅ yazar arşivinin 29 sayfasının tamamı (26 Kasım 2026'da yeniden tarandı) | serbestiyet.com yazar sayfası (`data/raw/`) |
 | 60+ yazı dizisi, bölüm sıraları | ✅ başlıklardan çıkarıldı; bazı bölümler sitede yok (aşağıda) | `scripts/build-serbestiyet.mjs` |
 | Konu etiketleri | ⚠️ anahtar kelimeyle otomatik; editör kontrolü gerekli | `TOPIC_RULES` |
 | Taraf yazıları (2007–2013) | ⏳ dizinlenmedi | — |
@@ -55,13 +55,14 @@ NEXT_PUBLIC_SITE_URL=https://alan-adi.tld npm run build    # statik çıktı: ou
 | Biyografi zaman çizelgesi | ✅ doğrulandı; Serbestiyet başlangıcı 2014 (arşivdeki en eski yazı 1 Ocak 2014) | Özgeçmiş + Wikipedia |
 | 10 video/ses kaydının başlık, tarih, program adı | ✅ doğrulandı | serbestiyet.com |
 | Yazı özetleri ve dizi açıklamaları | ❌ bilerek yok: içerik hakkında editoryal yorum yazılmaz | — |
-| YouTube kimlikleri | ⏳ eklenecek (alanı doldurmak yeterli) | — |
-| Yazıların tam metinleri | ⏳ aktarılacak | — |
+| 71 video/ses kaydı (YouTube kimliği, tarih, süre) | ✅ YouTube'da doğrulandı; 2 SerbestPod kaydı Spotify'dan | Serbestiyet, İbn Haldun Akademi ve diğer kanalların listeleri |
+| Köşe yazılarının tam metinleri | ✅ 868/868, `data/metinler/` (`node scripts/fetch-metinler.mjs`) | serbestiyet.com |
+| Metin içi bağlantılar | ✅ Serbestiyet içi bağlantılar denetlendi: ölüler kaldırıldı (metin korunur), arşivdeki yazılara gidenler site içine çevrildi (`scripts/check-links.mjs`); dış bağlantılar bu ortamdan denetlenemedi | — |
 | Kenar notları | ⏳ eserler gerçek; yorum alanları Berktay'ın notları için boş | — |
 | "Bir Dönem Kapanırken" özeti | ⚠️ taslak, doğrulanacak | — |
 | 5 yazının yalnızca ay bilgisi var | ⚠️ "Ara 2018" gibi gösteriliyor | site taşıma tarihi (2020-05-28) güvenilmez |
 
-**Sitede bulunamayan dizi bölümleri:** Solun Kültür Serüveni yazı dizisinin 1–3. bölümleri, Kuvayı milliyeler (2), YAE (1), Putin ve Prigozhin (1).
+**Sitede bulunamayan dizi bölümleri:** Kuvayı milliyeler (2), Putin ve Prigozhin (1). (YAE 1 Kasım 2026'da bulundu; Solun Kültür Serüveni 1–3 video olarak var.)
 
 ### Serbestiyet verisini yeniden üretmek
 

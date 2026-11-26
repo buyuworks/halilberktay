@@ -10,7 +10,8 @@ import { cx } from "@/lib/format";
    VİDEO ÇERÇEVESİ
    - youtubeId varsa: "tıkla-yükle" cephesi (facade) → youtube-nocookie
      iframe. Sayfa açılışında YouTube betikleri yüklenmez (performans + KVKK).
-   - youtubeId yoksa: seriye özgü tipografik afiş + kaynağa bağlantı.
+   - embedUrl varsa (Spotify ses kaydı): tıkla-yükle oynatıcı.
+   - ikisi de yoksa: seriye özgü tipografik afiş + kaynağa bağlantı.
 ------------------------------------------------------------------- */
 
 export function VideoPoster({
@@ -132,11 +133,27 @@ export function VideoPlayer({ video, autoplay = false }: { video: Video; autopla
       </button>
     );
   }
+  if (video.embedUrl) {
+    // Ses kaydı (Spotify) oynatıcısı: tıklayınca yüklenir
+    return loaded ? (
+      <iframe
+        className="block w-full rounded-xl bg-[#1f3550]"
+        style={{ height: 232 }}
+        src={video.embedUrl}
+        title={video.title}
+        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      />
+    ) : (
+      <button className="group block w-full" onClick={() => setLoaded(true)} aria-label={`${video.title} — dinle`}>
+        <VideoPoster video={video} />
+      </button>
+    );
+  }
   return (
     <div className="relative">
       <VideoPoster video={video} />
       <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 flex flex-wrap items-center gap-3 bg-gradient-to-t from-black/70 to-transparent">
-        <span className="meta !text-[#efe8da]/80">YouTube kimliği henüz eklenmedi</span>
         {video.sourceUrl && (
           <a
             href={video.sourceUrl}

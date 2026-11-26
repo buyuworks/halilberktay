@@ -44,8 +44,9 @@ export default function AboutPage() {
 
         <h2 id="kaynaklar">Kaynaklar</h2>
         <p>
-          Künye bilgileri özgeçmişten, Serbestiyet yazar arşivinden ve kamuya açık kaynaklardan derlendi. Yazıların tam metinleri
-          ve video bağlantıları aktarılıyor. Henüz doğrulanmamış bilgiler sitede işaretlidir.
+          Künye bilgileri özgeçmişten, Serbestiyet yazar arşivinden ve kamuya açık kaynaklardan derlendi. Serbestiyet&apos;teki köşe
+          yazılarının tam metinleri kaynağından aktarıldı; video ve ses kayıtları Serbestiyet, İbn Haldun Akademi ve diğer
+          kanalların yayınlarından gömülüdür. Henüz doğrulanmamış bilgiler sitede işaretlidir.
         </p>
       </div>
     </article>

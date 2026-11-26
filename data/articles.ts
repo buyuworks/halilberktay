@@ -1,13 +1,13 @@
 import type { Article, ArticleSeries } from "@/lib/types";
 import { SERBESTIYET_ARCHIVE, SERBESTIYET_SERIES } from "@/data/serbestiyet-arsiv";
+import METIN_DIZINI from "@/data/metin-dizini.json";
 
 /* ------------------------------------------------------------------
    MAKALELER
    Kaynak: serbestiyet.com yazar sayfası (başlık, tarih, bağlantı birebir),
    İbn Haldun Üniversitesi özgeçmişi (akademik künyeler).
-   Özetler editoryal olarak yeniden yazılmıştır; tam metinler henüz
-   aktarılmadı (okuyucu, kaynağa bağlantı verir).
-   readingTime: tam metin aktarılana kadar tahmini değerdir.
+   Köşe yazılarının tam metinleri kaynağından aktarıldı: data/metinler/<kimlik>.json
+   (scripts/fetch-metinler.mjs). Akademik metinler için yalnız künye vardır.
 ------------------------------------------------------------------- */
 
 const CURATED_SERIES: ArticleSeries[] = [
@@ -642,4 +642,9 @@ const CURATED: Article[] = [
 /* Elle derlenmiş kayıtlar (son yazılar + akademik künyeler) ile otomatik üretilmiş
    Serbestiyet arşivi (2014–2024) tek listede birleşir. */
 export const ARTICLE_SERIES: ArticleSeries[] = [...CURATED_SERIES, ...SERBESTIYET_SERIES];
-export const ARTICLES: Article[] = [...CURATED, ...SERBESTIYET_ARCHIVE];
+/* Tam metni kaynaktan aktarılmış yazılar (data/metinler) gerçek okuma süresini alır. */
+const SURE = METIN_DIZINI as Record<string, number>;
+export const ARTICLES: Article[] = [...CURATED, ...SERBESTIYET_ARCHIVE].map((a) => {
+  const dk = SURE[a.id.replace(/^a-/, "")];
+  return dk ? { ...a, readingTime: dk, fullText: true } : a;
+});

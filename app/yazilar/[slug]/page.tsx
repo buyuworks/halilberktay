@@ -8,6 +8,7 @@ import { formatDate, formatDateShort, cx } from "@/lib/format";
 import { ReadingProgress, ReaderControls, TableOfContents, CopyCitation } from "@/components/ReaderTools";
 import { TopicTag } from "@/components/EntryViews";
 import type { Article } from "@/lib/types";
+import { getMetin, startsWithLetter } from "@/lib/metin";
 
 export function generateStaticParams() {
   return ARTICLES.map((a) => ({ slug: a.slug }));
@@ -45,6 +46,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   const prev = idx > 0 ? siblings[idx - 1] : undefined;
   const next = idx >= 0 && idx < siblings.length - 1 ? siblings[idx + 1] : undefined;
   const related = relatedArticles(a, 30).filter((r) => !siblings.some((s) => s.id === r.id));
+  const metin = a.fullText ? getMetin(a.id) : null;
   const toc = (a.content ?? []).filter((b) => b.type === "h2") as { type: "h2"; text: string; id: string }[];
 
   // Schema.org yapılandırılmış veri (SEO)
@@ -98,7 +100,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
           <div className="flex flex-wrap items-center gap-x-5 gap-y-1">
             <span className="font-medium">Halil Berktay</span>
             <span className="meta">{formatDate(a.publishedAt, a.datePrecision)}</span>
-            <span className="meta">{a.readingTime} dk okuma{a.content ? "" : " (tahmini)"}</span>
+            <span className="meta">{a.readingTime} dk okuma{a.content || metin ? "" : " (tahmini)"}</span>
             <span className="meta">{a.source}</span>
             {a.language === "en" && <span className="meta">İngilizce</span>}
           </div>
@@ -138,7 +140,43 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
         </aside>
 
         <div className="lg:col-span-6 min-w-0">
-          {a.content ? (
+          {metin ? (
+            <div className="prose-berktay" lang={a.language}>
+              {metin.blocks.map((b, i) => {
+                if (!("html" in b)) {
+                  const L = b.type;
+                  return (
+                    <L key={i}>
+                      {b.items.map((h, j) => (
+                        <li key={j} dangerouslySetInnerHTML={{ __html: h }} />
+                      ))}
+                    </L>
+                  );
+                }
+                if (b.type === "h2") return <h3 key={i} dangerouslySetInnerHTML={{ __html: b.html }} />;
+                if (b.type === "quote") return <blockquote key={i} className="alinti" dangerouslySetInnerHTML={{ __html: b.html }} />;
+                const note = /^\s*\[\d+\]/.test(b.html.replace(/<[^>]+>/g, ""));
+                return (
+                  <p
+                    key={i}
+                    className={note ? "dipnot" : i === 0 && startsWithLetter(b.html) ? "dropcap" : undefined}
+                    dangerouslySetInnerHTML={{ __html: b.html }}
+                  />
+                );
+              })}
+              <p className="kaynak-notu">
+                Bu yazı ilk olarak {formatDate(a.publishedAt, a.datePrecision)} tarihinde {a.source}&apos;te yayımlandı.
+                {a.externalUrl && (
+                  <>
+                    {" "}
+                    <a href={a.externalUrl} target="_blank" rel="noopener noreferrer">
+                      Özgün yayın
+                    </a>
+                  </>
+                )}
+              </p>
+            </div>
+          ) : a.content ? (
             <div className="prose-berktay">
               {a.content.map((b, i) =>
                 b.type === "h2" ? (

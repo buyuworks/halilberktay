@@ -14,14 +14,12 @@ import { BookCover } from "@/components/BookCover";
 import { VideoShelf } from "@/components/VideoShelf";
 import { ImageSlot } from "@/components/ImageSlot";
 
-/* Öneri aşaması deneme görselleri (Higgsfield, GPT Image 2.5). Onaylanırsa indirilip
-   public/gorseller altına webp olarak alınacak; şimdilik doğrudan bağlantı. */
-const CDN = "https://d8j0ntlcm91z4.cloudfront.net/user_35wjp34o5FNPFnGZPI3DSTMiLUv/";
-export const DENEME = {
-  G1: CDN + "hf_20261104_134746_e492611a-ac4b-4dd3-83c5-d1745920b5a1.png",
-  G2: CDN + "hf_20261104_134755_3f140c40-31ca-49b8-97dc-429ae4e600fe.png",
-  G3: CDN + "hf_20261104_134742_79c8a191-5a47-4871-911a-c2c38c74c641.png",
-  G4: CDN + "hf_20261104_134803_a04cf91b-e4a4-4412-807e-15ccce99ed1c.png",
+/* Sayfa görselleri (mürekkep çizim, portreyle aynı dil; Higgsfield üretimi). */
+export const GORSEL = {
+  G1: "/gorseller/okuma-masasi.webp",
+  G2: "/gorseller/arsiv.webp",
+  G3: "/gorseller/kitap-yigini.webp",
+  G4: "/gorseller/sehirler.webp",
 };
 
 /* Ana sayfa bölümleri — "ferah" öneri sürümü.
@@ -164,7 +162,7 @@ export function HomeRest() {
             ["Kitap", `${STATS.books}`, "1983 – 2018"],
             ["Köşe yazısı", `${STATS.columns}`, "Serbestiyet, 2014’ten bu yana"],
             ["Akademik metin", `${STATS.academic}`, "1981 – 2005"],
-            ["Saat video ve ses", "100+", "TV, konferans, podcast"],
+            ["Video ve ses kaydı", `${STATS.videos}`, "Ders, konferans, TV, podcast"],
           ].map(([k, v, s]) => (
             <div key={k} className="border-l border-rule pl-6">
               <dd className="font-display text-5xl lg:text-6xl tabular-nums font-[400]">{v}</dd>
@@ -180,7 +178,7 @@ export function HomeRest() {
       {/* ——— ARŞİV: geniş görsel alanı + 6 kayıt ——— */}
       <section className={`${WRAP} ${GAP}`} aria-labelledby="arsiv-baslik">
         <div className="relative mb-14 lg:mb-20">
-          <ImageSlot src={DENEME.G2} alt="" code="G2" ratio="21:9" label="Arşiv: gazete kupürleri, dosyalar, kitap sırtları" className="w-full" />
+          <ImageSlot src={GORSEL.G2} alt="" code="G2" ratio="21:9" label="Arşiv: gazete kupürleri, dosyalar, kitap sırtları" className="w-full" />
         </div>
         <SectionHead kicker="Birleşik arşiv" title="Arşivden" href="/arsiv/" linkLabel="Gelişmiş arama" />
         <ArchiveShowcase {...showcaseData(index)} limit={6} />
@@ -207,7 +205,7 @@ export function HomeRest() {
         <SectionHead kicker="Bibliyografya" title="Kitaplar" href="/kitaplar/" linkLabel="Tam bibliyografya" />
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-16 items-start">
           <div className="hidden lg:block lg:col-span-4">
-            <ImageSlot src={DENEME.G3} alt="" code="G3" ratio="4:5" label="Masa üstü: üst üste kitaplar, gözlük" />
+            <ImageSlot src={GORSEL.G3} alt="" code="G3" ratio="4:5" label="Masa üstü: üst üste kitaplar, gözlük" />
           </div>
           <div className="lg:col-span-8 flex gap-8 sm:gap-10 overflow-x-auto scrollbar-none pb-6 -mx-5 px-5 sm:mx-0 sm:px-0 snap-x">
             {[...BOOKS]
@@ -229,7 +227,7 @@ export function HomeRest() {
       {/* ——— BİYOGRAFİ: zaman çizelgesine hizalı şehir panoraması ——— */}
       <section className={`${WRAP} ${GAP} mb-32 lg:mb-44`} aria-labelledby="bio-baslik">
         <SectionHead kicker="Biyografi" title="Biyografi" href="/biyografi/" linkLabel="Zaman çizelgesi" />
-        <ImageSlot src={DENEME.G4} alt="" code="G4" ratio="6:1" label="Şehir panoraması: New Haven · Birmingham · Ankara · İstanbul" className="w-full mb-10" />
+        <ImageSlot src={GORSEL.G4} alt="" code="G4" ratio="6:1" label="Şehir panoraması: New Haven · Birmingham · Ankara · İstanbul" className="w-full mb-10" />
         <ol className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-y-10 border-t border-rule">
           {[...TIMELINE]
             .filter((t) => t.kind === "Eğitim" || t.kind === "Akademi")

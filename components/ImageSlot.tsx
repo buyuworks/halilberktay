@@ -1,7 +1,6 @@
 import { cx } from "@/lib/format";
 
-/* Öneri aşaması: tasarıma özel üretilecek görsellerin yeri.
-   Taralı alan her zaman çizilir; src varsa görsel üstüne biner. */
+/* Tasarıma özel görsel alanı. src yoksa taralı yer tutucu çizilir. */
 export function ImageSlot({
   code,
   label,
@@ -32,11 +31,15 @@ export function ImageSlot({
       )}
       style={{ aspectRatio: ratio.replace(":", "/") }}
     >
-      <div className="absolute inset-0 opacity-[0.12]" style={{ backgroundImage: "repeating-linear-gradient(135deg, currentColor 0 1px, transparent 1px 11px)" }} />
-      <div className="relative text-center px-4">
-        <p className="font-mono text-[0.7rem] tracking-[0.14em] uppercase">Görsel {code} · {ratio}</p>
-        <p className="font-display italic text-lg mt-1">{label}</p>
-      </div>
+      {!src && (
+        <>
+          <div className="absolute inset-0 opacity-[0.12]" style={{ backgroundImage: "repeating-linear-gradient(135deg, currentColor 0 1px, transparent 1px 11px)" }} />
+          <div className="relative text-center px-4">
+            <p className="font-mono text-[0.7rem] tracking-[0.14em] uppercase">Görsel {code} · {ratio}</p>
+            <p className="font-display italic text-lg mt-1">{label}</p>
+          </div>
+        </>
+      )}
       {src && (
         // eslint-disable-next-line @next/next/no-img-element
         <img
