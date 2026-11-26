@@ -34,7 +34,7 @@ export default function HomePage() {
       <section className="mx-auto max-w-page px-5 sm:px-8 lg:px-12 pt-6 sm:pt-10 lg:pt-12" aria-label="Giriş">
         <div className="grid lg:grid-cols-12 gap-12 lg:gap-14 xl:gap-16 items-stretch">
           <div className="lg:col-span-8">
-            <div className="relative overflow-hidden bg-[#15130f] border border-[#f7f0e7]">
+            <div className="relative overflow-hidden bg-[#15130f]">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/gorseller/portre-cizim.webp"
